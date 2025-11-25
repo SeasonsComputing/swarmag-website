@@ -3,6 +3,14 @@
  *************************************/
 
 @font-face {
+  font-family: 'Lexend';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../assets/Lexend-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -37,13 +45,14 @@
 :root {
   /* Colors - Fundamental */
   --sa-color-dark: #57534e;
-  --sa-color-white: #fafafa;
+  --sa-color-darker: #1c1917;
+  --sa-color-white: #fcfcfc;
   --sa-color-bright: #ffffff;
 
   /* Colors - Primary */
   --sa-color-green: #95ac63;
   --sa-color-orange: #dcab4f;
-  --sa-color-eggshell: #fff9e8;
+  --sa-color-eggshell: #fffcf3;
   --sa-color-mint: #f0fdf4;
   --sa-color-sky: #cdeaff;
 
@@ -54,7 +63,6 @@
 
   /* Colors - Footer */
   --sa-color-footer-border: #36302e;
-  --sa-color-footer-bg: #1c1917;
   --sa-color-footer-text: #a8a29e;
 
   /* Shadows */
@@ -65,9 +73,10 @@
   --sa-shadow-focus: 0 0 0 2px rgba(34, 197, 94, 0.5);
 
   /* Typography - Families */
-  --sa-family-info: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --sa-family-main: 'Lexend', sans-serif;
+  --sa-family-info: 'Inter', sans-serif;
   --sa-family-heading: 'Playfair Display', serif;
-  --sa-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sa-family-mono: ui-monospace, monospace;
 
   /* Typography - Weights */
   --sa-weight-normal: 400;
@@ -135,14 +144,13 @@
   General
  *************************************/
 
-html {
-  --sa-color-even: var(--sa-color-eggshell);
-  --sa-color-odd: var(--sa-color-mint);
-}
-
 body {
+  font-family: var(--sa-family-main);
+  font-weight: var(--sa-weight-normal);
   font-size: 16px;
   line-height: 1.5;
+  color: var(--sa-color-dark);
+  background-color: var(--sa-color-eggshell);
 }
 
 header, footer, main, section, aside {
@@ -163,13 +171,12 @@ h3 {
 }
 
 p, span, li, td {
-  color: var(--sa-color-dark);
   font-size: var(--sa-font-normal);
   text-wrap: pretty;
 }
 
 strong {
-  font-weight: var(--sa-weight-semibold);
+  font-weight: var(--sa-weight-medium);
   text-shadow: var(--sa-shadow-text);
 }
 
@@ -181,28 +188,13 @@ strong {
   visibility: visible;
 }
 
-.BackgroundEven {
-  background-color: var(--sa-color-even);
-}
-
-.BackgroundOdd {
-  background-color: var(--sa-color-odd);
-}
-
-.ColorEven {
-  color: var(--sa-color-even);
-}
-
-.ColorOdd {
-  color: var(--sa-color-odd);
-}
-
 .ActionLayout {
-  margin-block: var(--sa-space-3xl);
+  margin-block-start: var(--sa-space-3xl);
   text-align: center;
 }
 
 .CallToAction {
+  font-family: var(--sa-family-info);
   background-color: var(--sa-color-orange);
   transition: var(--sa-transition-base);
   display: inline-block;
@@ -211,7 +203,7 @@ strong {
   width: 100%;
   font-size: var(--sa-font-normal);
   line-height: 1.25;
-  font-weight: var(--sa-weight-semibold);
+  font-weight: var(--sa-weight-medium);
   color: var(--sa-color-bright);
   text-decoration: none;
   max-width: 100%;
@@ -259,9 +251,9 @@ strong {
 }
 
 .Title {
-  color: var(--sa-color-dark);
   font-family: var(--sa-family-heading);
   font-weight: var(--sa-weight-bold);
+  color: var(--sa-color-dark);
   line-height: 1.25;
   text-wrap: pretty;
   padding-block: var(--sa-space-sm);
@@ -269,8 +261,7 @@ strong {
 
 .Subtitle {
   color: var(--sa-color-green);
-  font-weight: var(--sa-weight-semibold);
-  text-shadow: var(--sa-shadow-text);
+  font-weight: var(--sa-weight-medium);
   line-height: 1.25;
 }
 
@@ -302,8 +293,36 @@ strong {
   overflow-x: auto;
 }
 
-.AlignCenter {
+/*************************************
+  Layouts
+ *************************************/
+
+.CenterLayout {
   text-align: center;
+}
+
+.TwoColumnLayout {
+  display: grid;
+  gap: var(--sa-space-xl);
+}
+
+@media (min-width: 1024px) {
+  .TwoColumnLayout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .TwoColumnLayout.BigLeft {
+    grid-template-columns: 1fr auto;
+  }
+
+  .TwoColumnLayout.BigRight {
+    grid-template-columns: auto 1fr;
+  }
+}
+
+.TwoColumnLayout>.TwoColumnStack {
+  display: grid;
+  gap: var(--sa-space-lg);
 }
 
 /*************************************
@@ -329,10 +348,10 @@ strong {
 
 label {
   display: block;
-  color: var(--sa-color-dark);
   font-family: var(--sa-family-info);
   font-size: var(--sa-font-base);
   font-weight: var(--sa-weight-medium);
+  margin-block-end: 2px;
 }
 
 :is(input, select, textarea) {
@@ -466,7 +485,6 @@ ol.List.Color2>li::before {
  *************************************/
 
 table.Table {
-  color: var(--sa-color-dark);
   border-radius: var(--sa-radius-md) var(--sa-radius-md) 0 0;
   width: 100%;
   border-collapse: collapse;
@@ -474,7 +492,6 @@ table.Table {
 }
 
 table.Table td, table.Table th {
-  color: var(--sa-color-dark);
   padding: var(--sa-space-xs);
   font-size: 0.9rem;
   line-height: 1.3;
@@ -662,7 +679,6 @@ table.Table>tbody>tr.Odd {
   gap: var(--sa-space-lg);
   max-width: var(--sa-size-sm);
   padding-inline: var(--sa-space-lg);
-  margin-block-start: 6rem;
   text-align: center;
 }
 
@@ -726,15 +742,19 @@ table.Table>tbody>tr.Odd {
   transform: translateY(-3px);
 }
 
-.HeroContainer button.AnimationButton div {
+.HeroContainer button.AnimationButton .AnimationButtonBoid {
   margin-top: 5px;
   width: 10px;
   height: 10px;
   border-radius: 50% 50% 50% 50% / 90% 90% 10% 10%;
+  background-color: #fff;
+}
+
+.HeroContainer button.AnimationButton.active .AnimationButtonBoid {
   background-color: #fdf041ff;
 }
 
-.HeroContainer button.AnimationButton:hover div {
+.HeroContainer button.AnimationButton:hover .AnimationButtonBoid {
   animation: spin 1.5s linear infinite;
 }
 
@@ -748,110 +768,14 @@ table.Table>tbody>tr.Odd {
   }
 }
 
-.HeroContainer button.AnimationButton span {
+.HeroContainer button.AnimationButton .AnimationButtonText {
   font-family: var(--sa-family-info);
   color: #fff;
   font-size: 12px;
 }
 
-.HeroContainer button.AnimationButton.active span {
+.HeroContainer button.AnimationButton.active .AnimationButtonText {
   color: #000;
-}
-
-/*************************************
-  Section Artwork
- *************************************/
-
-.SectionArtwork {
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.SectionArtwork>img {
-  height: auto;
-  width: 100%;
-  max-width: 225px;
-}
-
-.SectionArtwork>img.ArtworkFrame {
-  background: linear-gradient(to bottom, #cdeaff 0%, #cdeaff 80%, #e5cc94 80%, #e5cc94 100%);
-  border-radius: var(--sa-radius-md);
-  box-shadow: var(--sa-shadow-soft);
-}
-
-/*************************************
-  TwoColLayout
- *************************************/
-
-.TwoColLayout {
-  display: grid;
-  gap: var(--sa-space-xl);
-}
-
-@media (min-width: 1024px) {
-  .TwoColLayout {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .TwoColLayout.BigLeft {
-    grid-template-columns: 1fr auto;
-  }
-
-  .TwoColLayout.BigRight {
-    grid-template-columns: auto 1fr;
-  }
-}
-
-.TwoColLayout>.TwoColStack {
-  display: grid;
-  gap: var(--sa-space-lg);
-}
-
-/*************************************
-  Section Separator
- *************************************/
-
-.SectionSeparator {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.SectionSeparator>.SeparatorLayout {
-  display: flex;
-  max-width: var(--sa-size-sm);
-  width: 100%;
-  align-items: center;
-}
-
-.SectionSeparator>.SeparatorLayout>img {
-  height: auto;
-  width: 6.5rem;
-  padding: 0.5rem;
-}
-
-.SectionSeparator>.SeparatorLayout>hr {
-  margin-inline: var(--sa-space-md);
-  flex: 1 1 0%;
-  border-top: 1px solid var(--sa-color-divider);
-  opacity: 25%;
-}
-
-/*************************************
-  Section Top Wave
- *************************************/
-
-.SectionTopWave {
-  width: 100%;
-  height: 80px;
-  overflow: hidden;
-}
-
-.SectionTopWave>svg {
-  height: 100%;
-  width: 100%;
 }
 
 /*************************************
@@ -862,7 +786,7 @@ table.Table>tbody>tr.Odd {
   width: 100%;
   margin-inline: auto;
   max-width: var(--sa-size-md);
-  padding-block: var(--sa-space-xl);
+  padding-block: var(--sa-space-3xl);
   padding-inline: var(--sa-space-lg);
   display: grid;
   gap: var(--sa-space-lg);
@@ -884,12 +808,61 @@ table.Table>tbody>tr.Odd {
   max-width: var(--sa-size-lg);
 }
 
+.ContainerArtwork {
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ContainerArtwork>img {
+  height: auto;
+  width: 100%;
+  max-width: 225px;
+}
+
+.ContainerArtwork>img.ArtworkFrame {
+  background: linear-gradient(to bottom, #cdeaff 0%, #cdeaff 80%, #e5cc94 80%, #e5cc94 100%);
+  border-radius: var(--sa-radius-md);
+  box-shadow: var(--sa-shadow-soft);
+}
+
+.ContainerCallout {
+  padding-block: var(--sa-space-2xl);
+  text-align: center;
+  display: grid;
+  gap: var(--sa-space-2xl);
+}
+
+.ContainerSeparator {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.ContainerSeparator>.SeparatorLayout {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.ContainerSeparator>.SeparatorLayout>img {
+  height: auto;
+  width: 6rem;
+  padding-inline: 0.5rem;
+}
+
+.ContainerSeparator>.SeparatorLayout>hr {
+  flex: 1 1 0%;
+  border-top: 1px solid var(--sa-color-divider);
+  opacity: 20%;
+}
+
 /*************************************
   Gallery & Carousel
  *************************************/
 
 .Gallery {
-  background-color: var(--sa-color-footer-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -909,23 +882,12 @@ table.Table>tbody>tr.Odd {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 @media (min-width: 425px) {
-  .Gallery {
-    background-color: var(--sa-color-sky);
-    padding-block: var(--sa-space-xl);
-  }
-
   .Gallery>.Container .CarouselSlide {
     border-radius: var(--sa-radius-xl);
-  }
-}
-
-@media (min-width: 768px) {
-  .Gallery {
-    padding-block: var(--sa-space-3xl);
   }
 }
 
@@ -949,7 +911,7 @@ table.Table>tbody>tr.Odd {
 
 .EquipmentLayout {
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   margin-inline: auto;
 }
 
@@ -1017,8 +979,8 @@ table.Table>tbody>tr.Odd {
  *************************************/
 
 .Footer {
-  background-color: var(--sa-color-footer-bg);
-  padding-block: var(--sa-space-3xl);
+  background-color: var(--sa-color-darker);
+  padding-block: var(--sa-space-xl);
 }
 
 .Footer .FooterContainer {

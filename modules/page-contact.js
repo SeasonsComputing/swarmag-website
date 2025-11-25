@@ -1,3 +1,4 @@
+import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/+esm'
 import { $, $$ } from './utils.js'
 
 /**
@@ -6,13 +7,17 @@ import { $, $$ } from './utils.js'
  */
 export const init = () => initContactForm();
 
+const ejsKey = 'jjgCuUf-CTyPT9cHj';
+const ejsAcct = 'swarmag_website';
+const ejsForm = 'swarmag_website_contact';
+
 /**
  * Initialize the contact form with EmailJS integration, validation, and event listeners.
  * Sets up form submission, real-time validation, and error handling.
  */
 function initContactForm() {
   // Initialize EmailJS
-  emailjs.init({ publicKey: "jjgCuUf-CTyPT9cHj" });
+  emailjs.init({ publicKey: ejsKey });
 
   const form = $('#contact-form');
   const required = $$('input[required], select[required], textarea[required]', form);
@@ -32,6 +37,7 @@ function initContactForm() {
 
       function clearMessage() {
         submit.textContent = origText;
+        submit.disabled = false;
       }
 
       showMessage(true, 'Sending...');
@@ -69,11 +75,7 @@ function initContactForm() {
       }
 
       // Send email
-      emailjs.send(
-        'swarmag_website', 
-        'swarmag_website_contact', 
-        values
-      ).then(succeed).catch(failed);
+      emailjs.send(ejsAcct, ejsForm, values).then(succeed).catch(failed);
     }
   }
 

@@ -48,7 +48,7 @@ export default class Carousel {
    * Create a new Carousel instance.
    * @param {string} id - CSS selector ID for the carousel container
    * @param {boolean} automate - Start carousel automation
-   * @param {number} duration - Auto-play duration in milliseconds (default DURATRION)
+   * @param {number} duration - Auto-play duration in milliseconds (default DURATION)
    */
   constructor(id, automate, duration) {
     this.#id = id;

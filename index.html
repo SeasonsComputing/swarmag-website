@@ -41,15 +41,10 @@
 
   <title>swarmAg - North Texas Precision Agricultural Services</title>
 
-  <link href="assets/inter-400.ttf" as="font" type="font/ttf">
-  <link href="assets/inter-600.ttf" as="font" type="font/ttf">
-  <link href="assets/playfair-display-400.ttf" as="font" type="font/ttf">
-  <link href="assets/playfair-display-700.ttf" as="font" type="font/ttf">
   <link rel="stylesheet" href="styles/normalize.css" />
   <link rel="stylesheet" href="styles/Carousel.css" />
   <link rel="stylesheet" href="styles/index.css" />
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script type="module">
     import Website from "./modules/Website.js";
     Website.bootstrap([
@@ -84,7 +79,8 @@
       </video>
       <div id="swarm-container" class="AnimationContainer"></div>
       <button id="swarm-toggle" class="AnimationButton">
-        <div></div><span>Swarm</span>
+        <span class="AnimationButtonBoid"></span>
+        <span class="AnimationButtonText">Swarm</span>
       </button>
       <div class="HeroOverlay">
         <div class="HeroLayout">
@@ -104,9 +100,9 @@
   </section>
 
   <main>
-    <section id="drone-spraying-and-spreading" class="Section BackgroundOdd">
+    <section id="drone-spraying-and-spreading" class="Section">
       <div class="Container Effect">
-        <div class="AlignCenter">
+        <div class="CenterLayout">
           <h1 class="Title">Drone Spraying & Spreading</h1>
           <p class="Subtitle">
             We specialize in precision agricultural services using state-of-the-art drone technology.
@@ -117,8 +113,8 @@
           don't have to schedule months in advance for a plane or helicopter; or get your tractor
           stuck in a North Texas rain-drenched mush.
         </p>
-        <div class="TwoColLayout BigLeft">
-          <div class="TwoColStack">
+        <div class="TwoColumnLayout BigLeft">
+          <div class="TwoColumnStack">
             <p class="Text">
               We also offer seed and dry-fertilizer spreading for pasture renovation, cover crops,
               and more. We can spread dry products like lime and gypsum or feed the fish in your cattle-pond, too!
@@ -128,18 +124,19 @@
               environmental impact. Plus, we can often get to your property faster than traditional methods.
             </p>
           </div>
-          <div class="SectionArtwork">
+          <div class="ContainerArtwork">
             <img class="ArtworkFrame" src="assets/clipart-drones.png" alt="Drone illustration" />
           </div>
         </div>
         <div class="ActionLayout">
           <a href="#get-started" class="CallToAction">Start spraying & spreading today</a>
         </div>
+      </div>
     </section>
 
-    <aside id="gallery-aerial" class="Gallery">
-      <div class="Container">
-        <div class="Carousel Effect">
+    <div id="gallery-aerial" class="Gallery">
+      <div class="Container Effect">
+        <div class="Carousel">
           <div class="CarouselContainer"></div>
           <button class="CarouselPrevSlide" aria-label="Previous slide">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -156,11 +153,11 @@
           <div class="CarouselIndicators" role="tablist" aria-label="Slide indicators"></div>
         </div>
       </div>
-    </aside>
+    </div>
 
-    <section id="mequite-and-brush-mitigation" class="Section BackgroundOdd">
+    <section id="mequite-and-brush-mitigation" class="Section">
       <div class="Container Effect">
-        <div class="AlignCenter">
+        <div class="CenterLayout">
           <h1 class="Title">Mesquite & Brush Mitigation</h1>
           <p class="Subtitle">
             We specialize in mesquite mitigation and brush removal using targeted cut-stem treatments.
@@ -175,11 +172,11 @@
           removing invasive or nuisance species. We specialize in mesquite mitigation for North Texas pastures and
           rangeland.
         </p>
-        <div class="TwoColLayout BigRight">
-          <div class="SectionArtwork">
+        <div class="TwoColumnLayout BigRight">
+          <div class="ContainerArtwork">
             <img class="ArtworkFrame" src="assets/clipart-mesquite.png" alt="Mesquite illustration" />
           </div>
-          <div class="TwoColStack">
+          <div class="TwoColumnStack">
             <p class="Text">
               Mesquite resprouts from buds at the root collar even after cutting. We cut each trunk flush to — or
               slightly below — ground level and immediately treat the stump and collar with a specialized herbicide mix
@@ -191,19 +188,37 @@
             </p>
           </div>
         </div>
+        <div class="ActionLayout">
+          <a href="#get-started" class="CallToAction">Reclaim your rangeland today</a>
+        </div>
       </div>
     </section>
 
-    <div class="SectionTopWave BackgroundOdd ColorEven">
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
-        <path d='M0,60 C300,120 600,0 900,60 C1050,100 1200,20 1200,60 L1200,120 L0,120 Z' fill='currentColor'></path>
-      </svg>
+    <div id="gallery-ground" class="Gallery">
+      <div class="Container Effect">
+        <div class="Carousel">
+          <div class="CarouselContainer"></div>
+          <button class="CarouselPrevSlide" aria-label="Previous slide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <button class="CarouselNextSlide" aria-label="Next slide">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+          <div class="CarouselIndicators" role="tablist" aria-label="Slide indicators"></div>
+        </div>
+      </div>
     </div>
 
-    <section id="a-different-approach" class="Section BackgroundEven">
+    <section id="a-different-approach" class="Section">
       <div class="Container Effect">
-        <div class="AlignCenter">
-          <h2 class="Title">A different approach</h2>
+        <div class="CenterLayout">
+          <h1 class="Title">A different approach</h1>
           <p class="Subtitle">
             We tailor the treatment for each property to each species.
           </p>
@@ -218,16 +233,16 @@
           selective foliar applications to ensure effective control with minimal disturbance to desirable
           vegetation.
         </p>
-        <div class="SectionSeparator BackgroundEven">
+        <div class="ContainerSeparator">
           <div class="SeparatorLayout">
             <hr />
             <img src="assets/clipart-mesquite.png" alt="Mesquite illustration" />
             <hr />
           </div>
         </div>
-        <div class="TwoColLayout">
+        <div class="TwoColumnLayout">
           <div>
-            <div class="AlignCenter">
+            <div class="CenterLayout">
               <h3 class="Title">Benefits to your land</h3>
             </div>
             <ol class="List Color1">
@@ -249,7 +264,7 @@
             </ol>
           </div>
           <div>
-            <div class="AlignCenter">
+            <div class="CenterLayout">
               <h3 class="Title">What to expect</h3>
             </div>
             <ol class="List Color2">
@@ -281,35 +296,15 @@
       </div>
     </section>
 
-    <aside id="gallery-ground" class="Gallery">
-      <div class="Container">
-        <div class="Carousel Effect">
-          <div class="CarouselContainer"></div>
-          <button class="CarouselPrevSlide" aria-label="Previous slide">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-          <button class="CarouselNextSlide" aria-label="Next slide">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
-          <div class="CarouselIndicators" role="tablist" aria-label="Slide indicators"></div>
-        </div>
-      </div>
-    </aside>
+    <div class="TransitionArtwork"></div>
 
-    <section id="the-swarmag-advantage" class="Section BackgroundOdd">
-      <div class="Container Effect">
-        <div class="AlignCenter">
+    <section id="the-swarmag-advantage" class="Section">
+      <div class="Container Wide Effect">
+        <div class="CenterLayout">
           <h1 class="Title">The SwarmAg Advantage</h1>
           <p class="Subtitle">
-            Our work integrates equipment, advanced tools and methods to deliver fast, precise, and efficient results
-            without
-            waste or unnecessary damage.
+            Our work integrates equipment, tools & techniques for 
+            fast, precise results. No waste or damage.
           </p>
         </div>
         <p class="Text DropCap">
@@ -356,33 +351,32 @@
             </table>
           </div>
         </div>
-        <div class="SectionSeparator BackgroundOdd">
-          <div class="SeparatorLayout">
-            <hr />
-            <img src="assets/clipart-drone.png" alt="Drone illustration" />
-            <hr />
+        <div class="ContainerCallout">
+          <div class="ContainerSeparator">
+            <div class="SeparatorLayout">
+              <hr />
+              <img src="assets/clipart-drone.png" alt="Drone illustration" />
+              <hr />
+            </div>
           </div>
-        </div>
-        <div class="AlignCenter">
           <p class="Text">
             <strong>
               Every piece of equipment is selected for reliability in North Texas conditions and for minimizing
               environmental impact while maximizing results.
             </strong>
           </p>
-        </div>
-        <div class="SectionSeparator BackgroundOdd">
-          <div class="SeparatorLayout">
-            <hr />
-            <img src="assets/clipart-skidsteer.png" alt="Mesquite illustration" />
-            <hr />
+          <div class="ContainerSeparator">
+            <div class="SeparatorLayout">
+              <hr />
+              <img src="assets/clipart-skidsteer.png" alt="Mesquite illustration" />
+              <hr />
+            </div>
           </div>
         </div>
         <div class="ToolLayout">
           <div class="Card">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="EquipmentIcon">
+            <svg class="EquipmentIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 4V2" />
               <path d="M18 9V7" />
               <path d="M18 14v-2" />
@@ -409,9 +403,8 @@
             </p>
           </div>
           <div class="Card">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="EquipmentIcon">
+            <svg class="EquipmentIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 4V2" />
               <path d="M18 9V7" />
               <path d="M18 14v-2" />
@@ -438,9 +431,8 @@
             </p>
           </div>
           <div class="Card">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="EquipmentIcon">
+            <svg class="EquipmentIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 4V2" />
               <path d="M18 9V7" />
               <path d="M18 14v-2" />
@@ -467,9 +459,8 @@
             </p>
           </div>
           <div class="Card">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="EquipmentIcon">
+            <svg class="EquipmentIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 4V2" />
               <path d="M18 9V7" />
               <path d="M18 14v-2" />
@@ -499,16 +490,12 @@
       </div>
     </section>
 
-    <div class="SectionTopWave BackgroundOdd ColorEven">
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
-        <path d='M0,60 C300,120 600,0 900,60 C1050,100 1200,20 1200,60 L1200,120 L0,120 Z' fill='currentColor'></path>
-      </svg>
-    </div>
+    <div class="TransitionArtwork"></div>
 
-    <section id="services-catalog" class="Section BackgroundEven">
+    <section id="services-catalog" class="Section">
       <div class="Container Effect">
-        <div class="AlignCenter">
-          <h2 class="Title">Services Catalog</h2>
+        <div class="CenterLayout">
+          <h1 class="Title">Services Catalog</h1>
           <p class="Subtitle">
             We offer a range of aerial and ground services to meet your agricultural needs.
           </p>
@@ -599,15 +586,11 @@
       </div>
     </section>
 
-    <div class="SectionTopWave BackgroundEven ColorOdd">
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
-        <path d='M0,60 C300,120 600,0 900,60 C1050,100 1200,20 1200,60 L1200,120 L0,120 Z' fill='currentColor'></path>
-      </svg>
-    </div>
+    <div class="TransitionArtwork"></div>
 
-    <section id="get-started" class="Section BackgroundOdd">
+    <section id="get-started" class="Section">
       <div class="Container Wide Effect">
-        <div class="AlignCenter">
+        <div class="CenterLayout">
           <h1 class="Title">Get started</h1>
           <p class="Subtitle">
             Schedule your no-cost estimate and walkthrough.
@@ -694,7 +677,7 @@
               <ul class="List">
                 <li>
                   <div class="Bullet"></div>
-                  cutting edge drone mapping and precision equipment
+                  Cutting edge drone mapping and precision equipment
                 </li>
                 <li>
                   <div class="Bullet"></div>
@@ -759,8 +742,7 @@
             </li>
             <li>
               <svg class="Icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="Icon">
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
