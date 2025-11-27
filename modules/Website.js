@@ -42,7 +42,6 @@ export default class Website {
       console.error(e);
 
       // show delayed elements (otherwise page is blank)
-      $$('.Effect').forEach(e => e.classList.add('fade-in-up'));
       $$('.Photo').forEach(e => e.classList.add('loaded'));
     }
   }

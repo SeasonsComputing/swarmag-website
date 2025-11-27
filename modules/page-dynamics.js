@@ -11,7 +11,6 @@ export const init = () => initPageDynamics();
 function initPageDynamics() {
   initHeader();
   initAnchorScrolling();
-  initFadeInUpScrolling();
 }
 
 /**
@@ -54,23 +53,3 @@ function initAnchorScrolling() {
   }
 }
 
-/**
- * Initialize fade-in-up animation for elements on scroll using Intersection Observer.
- */
-function initFadeInUpScrolling() {
-  const options = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  const observer = new IntersectionObserver(intersections, options);
-  $$('.Effect').forEach(c => observer.observe(c));
-
-  function intersections(entries) {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('fade-in-up');
-        observer.unobserve(e.target);
-      }
-    })
-  };
-}

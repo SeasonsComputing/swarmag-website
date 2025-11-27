@@ -397,21 +397,6 @@ select>option[value=""] {
 }
 
 /*************************************
-  Transition Effects
- *************************************/
-
-.Effect {
-  transition: var(--sa-transition-slow);
-  opacity: 0;
-  transform: translateY(clamp(3rem, 5vw, 6rem));
-}
-
-.Effect.fade-in-up {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/*************************************
   List
  *************************************/
 
@@ -1102,6 +1087,7 @@ main>.Divider {
   /* Safari-specific fixes for print compatibility */
   * {
     -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
     background: white !important;
     color: black !important;
   }
@@ -1115,10 +1101,6 @@ main>.Divider {
   img {
     width: 300px;
     height: auto;
-  }
-
-  .Effect {
-    opacity: 1 !important;
   }
 
   .Header,
