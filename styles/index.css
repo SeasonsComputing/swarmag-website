@@ -843,7 +843,7 @@ table.Table>tbody>tr.Odd {
   display: grid;
   gap: var(--sa-space-gap);
   max-width: 675px;
-  padding-block: var(--sa-space-lg);
+  padding-block: var(--sa-space-sm);
   margin-block: var(--sa-space-lg);
   margin-inline: auto;
 }
