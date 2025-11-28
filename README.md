@@ -223,10 +223,9 @@ Using OKLCH color tokens for consistency and future-proofing.
 
 ### Font Loading Strategy
 
-- Self-hosted fonts instead of Google Fonts (reduced external requests).
-- Font preloading in HTML head for immediate availability.
+- Self-hosted fonts defined via `@font-face` in CSS (no external font CDNs).
 - `font-display: swap` for immediate text rendering.
-- Variable Lexend font for flexible weights.
+- Variable Lexend TTF for flexible weights; Inter and Playfair Display as supporting faces.
 
 ### Image Optimization
 
