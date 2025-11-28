@@ -166,11 +166,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.5rem, 1.3rem + 1.5vw, 2.5rem);
-}
-
-h3 {
-  font-size: clamp(1.25rem, 1.1rem + 1vw, 2rem);
+  font-size: clamp(1.5rem, 1rem + 1vw, 1.75rem);
 }
 
 p, span, li, td {
@@ -778,7 +774,7 @@ table.Table>tbody>tr.Odd {
   margin-inline: auto;
   max-width: var(--sa-size-md);
   padding-block: var(--sa-space-xl) var(--sa-space-3xl);
-  padding-inline: var(--sa-space-xl);
+  padding-inline: var(--sa-space-2xl);
   display: grid;
   gap: var(--sa-space-gap);
 }
@@ -860,7 +856,7 @@ table.Table>tbody>tr.Odd {
 .Divider.WithImage>img {
   width: auto;
   height: 6rem;
-  padding-inline: 2rem;
+  padding-inline: var(--sa-space-sm);
   opacity: 0.85;
 }
 
@@ -976,10 +972,6 @@ table.Table>tbody>tr.Odd {
   padding-block: calc(var(--sa-space-gap) / 2);
 }
 
-#get-started .Card h3.Title {
-  font-size: 1.75rem;
-}
-
 .ContactLayout {
   display: grid;
   gap: var(--sa-space-xl);
@@ -1052,7 +1044,7 @@ table.Table>tbody>tr.Odd {
   filter: var(--sa-filter-mono);
 }
 
-.Footer h3.Title {
+.Footer h2.Title {
   color: oklch(var(--sa-color-whitesoft));
   font-size: 1.1rem;
   line-height: 1.5rem;
