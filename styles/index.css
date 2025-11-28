@@ -683,7 +683,7 @@ table.Table>tbody>tr.Odd {
 }
 
 .HeroContainer .HeroLayout .Title>img {
-  height: calc(7rem + 4vw);
+  max-height: calc(7rem + 4vw);
   width: auto;
 }
 
