@@ -81,9 +81,7 @@ export default class Website {
     }
 
     Website.#the = new Website();
-    window.addEventListener(
-      'DOMContentLoaded',
-      () => Website.the.#init(modules)
-    );
+    window.addEventListener('DOMContentLoaded', () => Website.the.#init(modules));
+    window.addEventListener('DOMContentLoaded', () => document.body.style.opacity = "1");
   }
 }

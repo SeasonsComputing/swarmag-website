@@ -7,7 +7,7 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('../assets/Lexend-VariableFont_wght.ttf') format('truetype');
+  src: url('../assets/Lexend-VariableFont_wght.woff2') format('woff2');
 }
 
 @font-face {
@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../assets/inter-400.ttf') format('truetype');
+  src: url('../assets/inter-400.woff2') format('woff2');
 }
 
 @font-face {
@@ -23,7 +23,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('../assets/inter-600.ttf') format('truetype');
+  src: url('../assets/inter-600.woff2') format('woff2');
 }
 
 @font-face {
@@ -31,7 +31,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../assets/playfair-display-400.ttf') format('truetype');
+  src: url('../assets/playfair-display-400.woff2') format('woff2');
 }
 
 @font-face {
@@ -39,7 +39,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('../assets/playfair-display-700.ttf') format('truetype');
+  src: url('../assets/playfair-display-700.woff2') format('woff2');
 }
 
 :root {
@@ -120,6 +120,16 @@
 
   /* Filters */
   --sa-filter-mono: brightness(0) invert(1);
+
+  /* Tables */
+  --sa-table-cell-pad: var(--sa-space-xs);
+  --sa-table-first-pad-head: var(--sa-space-sm);
+  --sa-table-first-pad-section: calc(var(--sa-space-sm) + var(--sa-space-xs));
+  --sa-table-first-pad-data: calc(var(--sa-space-sm) + (var(--sa-space-xs) * 2));
+  --sa-table-head-bg: oklch(var(--sa-color-dark) / 0.85);
+  --sa-table-section-bg: oklch(var(--sa-color-green));
+  --sa-table-row-even: oklch(var(--sa-color-whitebright));
+  --sa-table-row-odd: oklch(var(--sa-color-sky));
 }
 
 html {
@@ -155,6 +165,8 @@ body {
   line-height: 1.5;
   color: oklch(var(--sa-color-dark));
   background-color: oklch(var(--sa-color-eggshell));
+  opacity: 0;
+  transition: opacity 150ms ease-in;
 }
 
 header, footer, main, section, aside {
@@ -475,48 +487,54 @@ table.Table {
   text-align: left;
 }
 
-table.Table td, table.Table th {
-  padding-inline: var(--sa-space-xs);
-  padding-block: var(--sa-space-xs);
-  font-size: 0.9rem;
-  line-height: 1.3;
+table.Table th,
+table.Table td {
+  padding: var(--sa-table-cell-pad);
 }
 
-table.Table>thead {
-  background-color: oklch(var(--sa-color-dark) / 0.85);
+table.Table th:first-child {
+  padding-inline-start: var(--sa-table-first-pad-head);
 }
 
-table.Table>thead th {
+table.Table td {
+  font-family: var(--sa-family-info);
+  font-size: var(--sa-font-base);
+}
+
+table.Table tbody td:first-child {
+  padding-inline-start: var(--sa-table-first-pad-data);
+  font-weight: var(--sa-weight-bold);
+}
+
+table.Table thead {
+  background-color: var(--sa-table-head-bg);
+}
+
+table.Table thead th {
   padding-block: var(--sa-space-sm);
   color: oklch(var(--sa-color-whitebright));
-  font-weight: var(--sa-weight-extrabold);
-}
-
-table.Table>thead th:nth-child(1) {
-  padding-inline-start: var(--sa-space-sm);
-}
-
-table.Table>tbody>tr>td:nth-child(1) {
-  padding-inline-start: var(--sa-space-md);
   font-weight: var(--sa-weight-semibold);
 }
 
-table.Table>tbody>tr.TableSection {
-  background-color: oklch(var(--sa-color-green));
+table.Table tbody tr:not(.TableSection):nth-child(even),
+table.Table tbody tr.Even {
+  background-color: var(--sa-table-row-even);
 }
 
-table.Table>tbody>tr.TableSection>td:nth-child(1) {
-  padding-inline-start: calc(var(--sa-space-sm) + var(--sa-space-xs));
+table.Table tbody tr:not(.TableSection):nth-child(odd),
+table.Table tbody tr.Odd {
+  background-color: var(--sa-table-row-odd);
+}
+
+table.Table tbody tr.TableSection {
+  background-color: var(--sa-table-section-bg);
+}
+
+table.Table tbody tr.TableSection td {
+  padding-block: var(--sa-space-sm);
+  padding-inline-start: var(--sa-table-first-pad-section);
   color: oklch(var(--sa-color-whitebright));
-  font-weight: var(--sa-weight-extrabold);
-}
-
-table.Table>tbody>tr.Even {
-  background-color: oklch(var(--sa-color-whitebright));
-}
-
-table.Table>tbody>tr.Odd {
-  background-color: oklch(var(--sa-color-sky));
+  font-weight: var(--sa-weight-bold);
 }
 
 /*************************************
@@ -964,7 +982,7 @@ table.Table>tbody>tr.Odd {
  *************************************/
 
 #get-started {
-  background-color: oklch(var(--sa-color-mint) / 0.75);
+  background-color: oklch(var(--sa-color-mint) / 0.85);
   border-top: 1px solid oklch(var(--sa-color-green) / 0.15);
 }
 
