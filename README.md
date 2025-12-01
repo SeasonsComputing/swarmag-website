@@ -43,8 +43,7 @@ swarmag-website/
 │   ├── hero.mp4              # Hero background video
 │   ├── swarmag-logo-*.png    # Logo variants (tree, wordmark)
 │   ├── clipart-*.png         # Service illustrations (drones, mesquite, skidsteer)
-│   ├── apple-touch-icon*.png # PWA touch icons (57x57 to 180x180)
-│   └── *.ttf                 # Self-hosted fonts (Lexend, Inter, Playfair Display)
+│   └── apple-touch-icon*.png # PWA touch icons (57x57 to 180x180)
 ├── galleries/                # Photo gallery organized by service type
 │   ├── aerial/               # Aerial drone photos
 │   │   └── aerial-*.webp
