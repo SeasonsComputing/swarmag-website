@@ -516,13 +516,11 @@ table.Table thead th {
   font-weight: var(--sa-weight-semibold);
 }
 
-table.Table tbody tr:not(.TableSection):nth-child(even),
-table.Table tbody tr.Even {
+table.Table tbody tr.TableData:nth-child(even of .TableData) {
   background-color: var(--sa-table-row-even);
 }
 
-table.Table tbody tr:not(.TableSection):nth-child(odd),
-table.Table tbody tr.Odd {
+table.Table tbody tr.TableData:nth-child(odd of .TableData) {
   background-color: var(--sa-table-row-odd);
 }
 
