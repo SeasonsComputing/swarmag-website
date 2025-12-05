@@ -76,6 +76,7 @@ export default class Website {
    */
   static bootstrap(modules = []) {
     if (Website.#the) console.error("bootstrap() already completed!");
+    
     Website.#the = new Website();
     window.addEventListener('DOMContentLoaded', () => Website.the.#init(modules));
     window.addEventListener('DOMContentLoaded', () => document.body.style.opacity = "1");
