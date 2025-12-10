@@ -17,8 +17,8 @@ export default class Carousel {
   /** @private {boolean} Automatically progress the carousel */
   #automate = false;
 
-  /** @private {boolean} Auto-play duration in milliseconds */
-  #duration = false;
+  /** @private {number} Auto-play duration in milliseconds */
+  #duration = Carousel.#DURATION;
 
   /** @private {HTMLElement[]} Array of slide elements */
   #slides = [];
@@ -50,10 +50,10 @@ export default class Carousel {
    * @param {boolean} automate - Start carousel automation
    * @param {number} duration - Auto-play duration in milliseconds (default DURATION)
    */
-  constructor(id, automate, duration) {
+  constructor(id, automate, duration = Carousel.#DURATION) {
     this.#id = id;
     this.#automate = automate;
-    this.#duration = duration || Carousel.#DURATION;
+    this.#duration = duration;
   }
 
   /**
@@ -102,15 +102,14 @@ export default class Carousel {
     });
 
     this.#indicators.forEach((indicator, i) => {
-      if (this.#curr === i) {
-        indicator.classList.remove('CarouselDot');
-        indicator.classList.add('CarouselDotActive');
+      const isActive = this.#curr === i;
+      indicator.classList.toggle('is-active', isActive);
+      if (isActive) {
         indicator.setAttribute('aria-current', 'true');
       } else {
-        indicator.classList.remove('CarouselDotActive');
-        indicator.classList.add('CarouselDot');
         indicator.removeAttribute('aria-current');
       }
+      indicator.tabIndex = isActive ? 0 : -1;
     });
   }
 
@@ -190,7 +189,7 @@ export default class Carousel {
    */
   startCarousel() {
     if (this.#interval) return;
-    this.#interval = setInterval(() => this.nextSlide(), Carousel.#DURATION);
+    this.#interval = setInterval(() => this.nextSlide(), this.#duration);
   }
 
   /**

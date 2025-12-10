@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+    <path d="m15 18-6-6 6-6" />
+  </symbol>
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+    <path d="m9 18 6-6-6-6" />
+  </symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24">
+    <path
+    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  </symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24">
+    <rect width="20" height="16" x="2" y="4" rx="2" />
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+  </symbol>
+  <symbol id="icon-map-pin" viewBox="0 0 24 24">
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="3" />
+  </symbol>
+  <symbol id="icon-equipment-grid" viewBox="0 0 24 24">
+    <path d="M18 4V2" />
+    <path d="M18 9V7" />
+    <path d="M18 14v-2" />
+    <path d="M18 19v-2" />
+    <path d="M18 22v-2" />
+    <path d="M12 4V2" />
+    <path d="M12 9V7" />
+    <path d="M12 14v-2" />
+    <path d="M12 19v-2" />
+    <path d="M12 22v-2" />
+    <path d="M6 4V2" />
+    <path d="M6 9V7" />
+    <path d="M6 14v-2" />
+    <path d="M6 19v-2" />
+    <path d="M6 22v-2" />
+    <path d="M2 4h20" />
+    <path d="M2 9h20" />
+    <path d="M2 14h20" />
+    <path d="M2 19h20" />
+  </symbol>
+</svg>

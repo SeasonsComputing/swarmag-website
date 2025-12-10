@@ -12,15 +12,15 @@ export default class Website {
   /** @static @private {Website} Singleton instance */
   static #the = null;
 
-  /** @private {Map} Storage for photo galleries indexed by gallery name */
-  #galleries = new Map();
+  /** @private {object} Storage for photo galleries indexed by gallery name */
+  #galleries = {};
 
   /** @private {Swarm} Swarm effect instance for visual animations */
   #swarm = new Swarm();
 
   /**
    * Get the galleries collection.
-   * @returns {Map} Map of gallery names to gallery objects
+   * @returns {object} Map of gallery names to gallery objects
    */
   get galleries() { return this.#galleries; }
 
