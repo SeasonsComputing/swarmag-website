@@ -5,7 +5,6 @@
 }
 
 .Carousel>.CarouselContainer {
-  position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -42,23 +41,18 @@
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.Carousel>.CarouselIndicators>.CarouselDotActive {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 9999px;
-  border-width: 0;
-  transition: background-color 0.15s ease-in-out;
+.Carousel>.CarouselIndicators>.CarouselDot.is-active,
+.Carousel>.CarouselIndicators>.CarouselDot[aria-current="true"] {
   background-color: white;
 }
 
-.Carousel>.CarouselIndicators>.CarouselDotActive:focus {
+.Carousel>.CarouselIndicators>.CarouselDot:focus-visible {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
   outline: none;
 }
 
-button.CarouselPrevSlide {
+.CarouselNav {
   position: absolute;
-  left: 1rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 20;
@@ -67,47 +61,29 @@ button.CarouselPrevSlide {
   padding: 0.5rem;
   transition: background-color 0.15s ease-in-out;
   backdrop-filter: blur(4px);
+  border: none;
+  cursor: pointer;
 }
 
-button.CarouselPrevSlide:hover {
+.CarouselNav:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-button.CarouselPrevSlide:focus {
+.CarouselNav:focus-visible {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
   outline: none;
 }
 
-button.CarouselPrevSlide>svg {
+.CarouselPrevSlide { left: 1rem; }
+.CarouselNextSlide { right: 1rem; }
+
+.CarouselIcon {
   color: white;
   width: 1.5rem;
   height: 1.5rem;
-}
-
-button.CarouselNextSlide {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 9999px;
-  padding: 0.5rem;
-  transition: background-color 0.15s ease-in-out;
-  backdrop-filter: blur(4px);
-}
-
-button.CarouselNextSlide:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-button.CarouselNextSlide:focus {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
-  outline: none;
-}
-
-button.CarouselNextSlide>svg {
-  color: white;
-  width: 1.5rem;
-  height: 1.5rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }

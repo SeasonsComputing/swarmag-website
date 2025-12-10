@@ -59,7 +59,7 @@ function initGallery(gallery, photos) {
     dot.className = 'CarouselDot';
     dot.role = 'tab';
     dot.setAttribute('aria-label', `Go to slide ${ndx + 1}`);
-    dot.tabIndex = ndx;
+    dot.tabIndex = -1;
     return dot;
   }
 }

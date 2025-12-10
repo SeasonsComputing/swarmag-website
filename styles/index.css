@@ -441,8 +441,13 @@ select>option[value=""] {
 .List>li>.Icon {
   display: inline-block;
   color: oklch(var(--sa-color-orange));
-  min-width: 24px;
-  min-height: 24px;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 ol.List {
@@ -620,6 +625,13 @@ table.Table tbody tr.TableSection td {
 
 .Header .HeaderPhoneIcon {
   color: oklch(var(--sa-color-whitebright));
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   transition: color 0.3s ease;
 }
 
@@ -712,11 +724,11 @@ table.Table tbody tr.TableSection td {
   font-weight: var(--sa-weight-semibold);
 }
 
-.HeroContainer .HeroLayout .CallToAction {
-  margin-block-end: 0;
-}
+/*************************************
+  Animation
+ *************************************/
 
-.HeroContainer .AnimationContainer {
+.AnimationContainer {
   position: absolute;
   top: 0;
   left: 0;
@@ -724,7 +736,7 @@ table.Table tbody tr.TableSection td {
   height: 100vh;
 }
 
-.HeroContainer button.AnimationButton {
+.AnimationButton {
   position: absolute;
   z-index: 20;
   bottom: var(--sa-space-md);
@@ -737,15 +749,15 @@ table.Table tbody tr.TableSection td {
   background-color: oklch(var(--sa-color-whitebright) / 0.31);
 }
 
-.HeroContainer button.AnimationButton.active {
+.AnimationButton.active {
   background-color: oklch(var(--sa-color-whitebright) / 0.63);
 }
 
-.HeroContainer button.AnimationButton:hover {
+.AnimationButton:hover {
   transform: translateY(-3px);
 }
 
-.HeroContainer button.AnimationButton .AnimationButtonBoid {
+.AnimationButton .AnimationButtonBoid {
   margin-top: 5px;
   width: 10px;
   height: 10px;
@@ -753,11 +765,11 @@ table.Table tbody tr.TableSection td {
   background-color: oklch(var(--sa-color-whitebright));
 }
 
-.HeroContainer button.AnimationButton.active .AnimationButtonBoid {
+.AnimationButton.active .AnimationButtonBoid {
   background-color: oklch(93.7236% 0.1815 105.0004);
 }
 
-.HeroContainer button.AnimationButton:hover .AnimationButtonBoid {
+.AnimationButton:hover .AnimationButtonBoid {
   animation: spin 1.5s linear infinite;
 }
 
@@ -771,14 +783,19 @@ table.Table tbody tr.TableSection td {
   }
 }
 
-.HeroContainer button.AnimationButton .AnimationButtonText {
+.AnimationButton .AnimationButtonText {
   font-family: var(--sa-family-info);
   color: oklch(var(--sa-color-whitebright));
   font-size: 12px;
 }
 
-.HeroContainer button.AnimationButton.active .AnimationButtonText {
+.AnimationButton.active .AnimationButtonText {
   color: oklch(0% 0 0);
+}
+
+.AnimationButton:focus-visible {
+  outline: 2px solid oklch(var(--sa-color-whitebright));
+  outline-offset: 2px;
 }
 
 /*************************************
@@ -885,19 +902,19 @@ table.Table tbody tr.TableSection td {
  *************************************/
 
 .Gallery {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .Gallery>.Container {
-  width: 100%;
-  height: 36rem;
   display: inline-block;
+  height: 36rem;
+  width: var(--sa-size-xs);
   padding: 0;
-  max-width: var(--sa-size-xs);
-  overflow: hidden;
-  position: relative;
 }
 
 .Gallery>.Container .CarouselSlide {
@@ -964,6 +981,11 @@ table.Table tbody tr.TableSection td {
   color: oklch(var(--sa-color-orange));
   height: 3rem;
   width: 3rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /*************************************
