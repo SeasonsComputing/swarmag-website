@@ -50,7 +50,7 @@
   --sa-color-whitebright: 100% 0 0;
 
   /* Colors - Primary */
-  --sa-color-green: 70.9546% 0.1015 123.2667;
+  --sa-color-green: 76.849% 0.13454 123.993;
   --sa-color-orange: 76.885% 0.1231 80.8277;
   --sa-color-eggshell: 99.0925% 0.0122 91.5145;
   --sa-color-mint: 98.1943% 0.018 155.8257;
@@ -149,11 +149,6 @@ html {
   }
 }
 
-:focus-visible {
-  outline: 2px solid oklch(var(--sa-color-orange));
-  outline-offset: 2px;
-}
-
 /*************************************
   General
  *************************************/
@@ -204,21 +199,26 @@ hr {
 }
 
 .CallToAction {
-  font-family: var(--sa-family-info);
   background-color: oklch(var(--sa-color-orange));
-  transition: var(--sa-transition-base);
-  display: inline-block;
   border-radius: var(--sa-radius-full);
-  padding: 1.25rem;
-  width: 100%;
-  font-size: var(--sa-font-normal);
-  line-height: 1.25;
-  font-weight: var(--sa-weight-medium);
   color: oklch(var(--sa-color-whitebright));
-  text-decoration: none;
+  display: inline-block;
+  font-family: var(--sa-family-info);
+  font-size: var(--sa-font-normal);
+  font-weight: var(--sa-weight-medium);
+  line-height: 1.25;
   max-width: 100%;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
   overflow: hidden;
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  width: 100%;
+}
+
+.CallToAction:focus-visible {
+  outline: 2px solid oklch(var(--sa-color-orange));
+  outline-offset: 2px;
 }
 
 @media (min-width: 500px) {
@@ -271,8 +271,21 @@ hr {
 
 .Subtitle {
   color: oklch(var(--sa-color-green));
-  font-weight: var(--sa-weight-medium);
+  font-weight: var(--sa-weight-semibold);
   line-height: 1.25;
+}
+
+.Callout {
+  max-width: var(--sa-size-sm);
+  margin-block: var(--sa-space-3xl);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.Callout>p {
+  color: oklch(var(--sa-color-green));
+  font-weight: var(--sa-weight-semibold);
+  padding-inline: var(--sa-space-lg);
 }
 
 .Text.DropCap:first-letter {
@@ -302,6 +315,11 @@ hr {
   padding: 0;
   border: 0;
   overflow-x: auto;
+}
+
+.CardIcon {
+  width: 5rem;
+  height: 5rem;
 }
 
 /*************************************
@@ -849,24 +867,6 @@ table.Table tbody tr.TableSection td {
   background: linear-gradient(to bottom, oklch(var(--sa-color-sky)) 0%, oklch(var(--sa-color-sky)) 80%, oklch(85.2991% 0.0778 86.6194) 80%, oklch(85.2991% 0.0778 86.6194) 100%);
   border-radius: var(--sa-radius-md);
   box-shadow: var(--sa-shadow-soft);
-}
-
-.Callout {
-  display: grid;
-  gap: var(--sa-space-gap);
-  max-width: 700px;
-  margin-block: var(--sa-space-3xl);
-  margin-inline: auto;
-}
-
-.Callout>hr {
-  border-top: 2px solid oklch(var(--sa-color-orange) / 0.5);
-}
-
-.Callout>p {
-  padding-inline: var(--sa-space-md);
-  font-weight: var(--sa-weight-bold);
-  text-align: center;
 }
 
 .Divider {
