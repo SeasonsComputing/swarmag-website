@@ -5,9 +5,11 @@
 @font-face {
   font-family: 'Lexend';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../assets/Lexend-VariableFont_wght.woff2') format('woff2');
+  src:
+    url('../assets/Lexend-VariableFont_wght.woff2') format('woff2-variations'),
+    url('../assets/Lexend-VariableFont_wght.woff2') format('woff2');
 }
 
 @font-face {
@@ -68,7 +70,7 @@
   --sa-shadow-hard: 0 10px 15px -3px oklch(0% 0 0 / 0.1), 0 4px 6px -2px oklch(0% 0 0 / 0.35);
   --sa-shadow-soft: 0 10px 15px -3px oklch(0% 0 0 / 0.1), 0 4px 6px -2px oklch(0% 0 0 / 0.05);
   --sa-shadow-press: 0 6px 12px oklch(0% 0 0 / 0.3), 0 3px 6px oklch(0% 0 0 / 0.2);
-  --sa-shadow-text: 0 0 1px oklch(var(--sa-color-whitebright) / 0.15);
+  --sa-shadow-text: 0 0 1px oklch(100% 0 0 / 0.15);
   --sa-shadow-focus: 0 0 0 2px oklch(72.2746% 0.192 149.5793 / 0.5);
 
   /* Typography - Families */
@@ -127,7 +129,9 @@
   --sa-table-first-pad-section: calc(var(--sa-space-sm) + var(--sa-space-xs));
   --sa-table-first-pad-data: calc(var(--sa-space-sm) + (var(--sa-space-xs) * 2));
   --sa-table-head-bg: oklch(var(--sa-color-dark) / 0.85);
+  --sa-table-head-color: oklch(var(--sa-color-whitebright));
   --sa-table-section-bg: oklch(var(--sa-color-green));
+  --sa-table-section-color: oklch(var(--sa-color-whitebright));
   --sa-table-row-even: oklch(var(--sa-color-whitebright));
   --sa-table-row-odd: oklch(var(--sa-color-sky));
 }
@@ -179,6 +183,10 @@ h2 {
 p, span, li, td {
   font-size: var(--sa-font-normal);
   text-wrap: pretty;
+}
+
+strong {
+  color: oklch(var(--sa-color-orange));
 }
 
 hr {
@@ -271,7 +279,7 @@ hr {
 
 .Subtitle {
   color: oklch(var(--sa-color-green));
-  font-weight: var(--sa-weight-semibold);
+  font-weight: var(--sa-weight-normal);
   line-height: 1.25;
 }
 
@@ -284,7 +292,7 @@ hr {
 
 .Callout>p {
   color: oklch(var(--sa-color-green));
-  font-weight: var(--sa-weight-semibold);
+  font-weight: var(--sa-weight-normal);
   padding-inline: var(--sa-space-lg);
 }
 
@@ -516,6 +524,7 @@ table.Table td {
 }
 
 table.Table th:first-child {
+  font-family: var(--sa-family-main);
   padding-inline-start: var(--sa-table-first-pad-head);
 }
 
@@ -526,7 +535,7 @@ table.Table td {
 
 table.Table tbody td:first-child {
   padding-inline-start: var(--sa-table-first-pad-data);
-  font-weight: var(--sa-weight-bold);
+  font-weight: var(--sa-weight-semibold);
 }
 
 table.Table thead {
@@ -535,8 +544,8 @@ table.Table thead {
 
 table.Table thead th {
   padding-block: var(--sa-space-sm);
-  color: oklch(var(--sa-color-whitebright));
-  font-weight: var(--sa-weight-semibold);
+  color: var(--sa-table-head-color);
+  font-weight: var(--sa-weight-bold);
 }
 
 table.Table tbody tr.TableData:nth-child(even of .TableData) {
@@ -552,10 +561,12 @@ table.Table tbody tr.TableSection {
 }
 
 table.Table tbody tr.TableSection td {
+  font-family: var(--sa-family-main);
+  font-weight: var(--sa-weight-bold);
   padding-block: var(--sa-space-sm);
   padding-inline-start: var(--sa-table-first-pad-section);
-  color: oklch(var(--sa-color-whitebright));
-  font-weight: var(--sa-weight-bold);
+  color: var(--sa-table-section-color);
+  text-shadow: 0 1px 1px oklch(var(--sa-color-dark) / 0.45);
 }
 
 /*************************************
@@ -655,7 +666,7 @@ table.Table tbody tr.TableSection td {
 
 .Header .HeaderPhoneText {
   color: oklch(var(--sa-color-whitebright));
-  font-weight: var(--sa-weight-bold);
+  font-weight: var(--sa-weight-medium);
   line-height: 1;
   transition: color 0.3s ease, font-size 0.3s ease;
 }
