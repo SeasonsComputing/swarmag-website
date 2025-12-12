@@ -894,35 +894,28 @@ table.Table tbody tr.TableSection td {
 }
 
 /*************************************
-  Divider
+  Divider w/ Image
  *************************************/
 
 .Divider {
-  padding-inline: var(--sa-space-gap);
-  max-width: var(--sa-size-lg);
-}
-
-.Divider {
   display: flex;
-  width: 100%;
   justify-content: center;
   margin-inline: auto;
   align-items: center;
+  padding-inline: var(--sa-space-gap);
+  max-width: var(--sa-size-lg);
+  width: 100%;
 }
 
 .Divider>hr {
   flex: 1;
 }
 
-.Divider.WithImage>img {
+.Divider>img {
   width: auto;
   height: 6rem;
   padding-inline: var(--sa-space-sm);
   opacity: 0.85;
-}
-
-.Divider.WithImage>hr {
-  flex: 1 1 0%;
 }
 
 /*************************************
