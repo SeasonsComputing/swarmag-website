@@ -202,7 +202,7 @@ hr {
  *************************************/
 
 .ActionLayout {
-  margin-block-start: var(--sa-space-3xl);
+  padding-block: var(--sa-space-2xl);
   text-align: center;
 }
 
@@ -278,13 +278,14 @@ hr {
   color: oklch(var(--sa-color-dark));
   line-height: 1.1;
   text-wrap: pretty;
-  margin-block: 8px;
+  margin-block-end: var(--sa-space-sm);
 }
 
 .Subtitle {
   color: oklch(var(--sa-color-green));
   font-weight: var(--sa-weight-normal);
   line-height: 1.25;
+  margin-block-end: var(--sa-space-sm);
 }
 
 .Text {
@@ -307,7 +308,7 @@ hr {
 
 .Callout {
   max-width: var(--sa-size-sm);
-  margin-block-start: var(--sa-space-3xl);
+  padding-block: var(--sa-space-lg);
   margin-inline: auto;
   text-align: center;
 }
@@ -848,7 +849,7 @@ table.Table tbody tr.TableSection td {
   width: 100%;
   margin-inline: auto;
   max-width: var(--sa-size-md);
-  padding-block: var(--sa-space-xl) var(--sa-space-3xl);
+  padding-block: var(--sa-space-3xl);
   padding-inline: var(--sa-space-2xl);
   display: grid;
   gap: var(--sa-space-gap);
