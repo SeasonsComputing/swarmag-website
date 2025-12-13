@@ -58,8 +58,8 @@ function initGallery(gallery, photos) {
     const dot = document.createElement('button');
     dot.className = 'CarouselDot';
     dot.role = 'tab';
-    dot.setAttribute('aria-label', `Go to slide ${ndx + 1}`);
-    dot.tabIndex = -1;
+    dot.setAttribute('aria-label', `${ndx + 1}`);
+    dot.tabIndex = 0;
     return dot;
   }
 }

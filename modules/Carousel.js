@@ -109,7 +109,6 @@ export default class Carousel {
       } else {
         indicator.removeAttribute('aria-current');
       }
-      indicator.tabIndex = isActive ? 0 : -1;
     });
   }
 
