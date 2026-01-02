@@ -27,4 +27,10 @@ export const immutable = o => Object.freeze(o);
  * @param {number} [max] - Maximum number of elements to return. If not provided, returns all elements.
  * @returns {Array} A randomly shuffled subset of the input array
  */
-export const shuffle = (a, max) => a.sort(() => Math.random() - 0.5).slice(0, max || a.length);
+export const shuffle = (a, max) => {
+  for (let i = a.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a.slice(0, max ?? a.length);
+};
