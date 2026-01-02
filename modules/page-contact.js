@@ -7,6 +7,9 @@ import { $, $$ } from './utils.js'
  */
 export const init = () => initContactForm();
 
+/**
+ * Attributes for emailjs 
+ */
 const ejsKey = 'jjgCuUf-CTyPT9cHj';
 const ejsAcct = 'swarmag_website';
 const ejsForm = 'swarmag_website_contact';
