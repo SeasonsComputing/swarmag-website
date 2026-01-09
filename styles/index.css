@@ -48,7 +48,7 @@
   /* Colors - Fundamental */
   --sa-color-dark: 44.4385% 0.0096 73.6332;
   --sa-color-darker: 21.6115% 0.0061 56.0435;
-  --sa-color-whitesoft: 99.1042% 0 0;
+  --sa-color-white-soft: 99.1042% 0 0;
   --sa-color-whitebright: 100% 0 0;
 
   /* Colors - Primary */
@@ -61,6 +61,7 @@
   /* Colors - Other */
   --sa-color-frame: 92.758% 0.0058 264.5313;
   --sa-color-placeholder: 71.3651% 0.0192 261.3174;
+  --sa-color-goldenrod: 65.2070% 0.1322 81.5716;
 
   /* Colors - Footer */
   --sa-color-footer-border: 31.4868% 0.0094 39.3496;
@@ -186,7 +187,7 @@ strong {
 }
 
 hr {
-  border-top: 1px solid oklch(var(--sa-color-darker) / 0.15);
+  border-block-start: 1px solid oklch(var(--sa-color-darker) / 0.15);
 }
 
 .hidden {
@@ -282,6 +283,7 @@ hr {
 }
 
 .Subtitle {
+  max-width: var(--sa-size-md);
   color: oklch(var(--sa-color-green));
   font-weight: var(--sa-weight-normal);
   line-height: 1.25;
@@ -294,7 +296,7 @@ hr {
 
 .Text.DropCap:first-letter {
   float: left;
-  color: oklch(var(--sa-color-whitesoft));
+  color: oklch(var(--sa-color-white-soft));
   background-color: oklch(var(--sa-color-dark));
   font-family: var(--sa-family-heading);
   font-size: 2.5rem;
@@ -307,16 +309,29 @@ hr {
 }
 
 .Callout {
-  max-width: var(--sa-size-sm);
-  padding-block: var(--sa-space-lg);
-  margin-inline: auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-inline: var(--sa-space-xl);
 }
 
 .Callout>p {
-  color: oklch(var(--sa-color-green));
-  font-weight: var(--sa-weight-normal);
-  padding-inline: var(--sa-space-lg);
+  max-width: var(--sa-size-sm);
+  text-align: center;
+  color: oklch(var(--sa-color-goldenrod));
+  padding-inline: var(--sa-space-md);
+}
+
+@media (min-width: 768px) {
+  .Callout {
+    margin-inline: var(--sa-space-4xl);
+  }
+
+  .Callout>p {
+    padding-block: var(--sa-space-lg);
+    margin-block: var(--sa-space-lg);
+    border-block: 1px solid oklch(var(--sa-color-darker) / 0.15);
+  }
 }
 
 /*************************************
@@ -324,7 +339,7 @@ hr {
  *************************************/
 
 .Card {
-  background-color: oklch(var(--sa-color-whitesoft));
+  background-color: oklch(var(--sa-color-white-soft));
   padding: var(--sa-space-gap);
   border-width: 1px;
   border-radius: var(--sa-radius-md);
@@ -339,6 +354,9 @@ hr {
 }
 
 .CardIcon {
+  opacity: 0.75;
+  float: right;
+  margin-block-start: -1.25rem;
   width: 5rem;
   height: 5rem;
 }
@@ -348,6 +366,9 @@ hr {
  *************************************/
 
 .CenterLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
@@ -558,7 +579,7 @@ table.Table thead {
 table.Table thead th {
   padding-block: var(--sa-space-sm);
   color: var(--sa-table-head-color);
-  font-weight: var(--sa-weight-bold);
+  font-weight: var(--sa-weight-semibold);
 }
 
 table.Table tbody tr.TableData:nth-child(even of .TableData) {
@@ -1105,7 +1126,7 @@ table.Table tbody tr.TableSection td {
 }
 
 .Footer h2.Title {
-  color: oklch(var(--sa-color-whitesoft));
+  color: oklch(var(--sa-color-white-soft));
   font-size: 1.1rem;
   line-height: 1.5rem;
 }
