@@ -7,7 +7,7 @@ import { $, $$ } from './utils.js'
  * auto-play functionality, and accessibility features. Manages slide
  * transitions, indicator states, and user interactions.
  */
-export default class Carousel {
+export class Carousel {
   /** @static {number} Auto-play duration in milliseconds (3.5 seconds) */
   static #DURATION = 3500;
 
@@ -47,7 +47,7 @@ export default class Carousel {
   /**
    * Create a new Carousel instance.
    * @param {string} id - CSS selector ID for the carousel container
-   * @param {boolean} automate - Start carousel automation
+   * @param {boolean} automate - is carousel navigation automated
    * @param {number} duration - Auto-play duration in milliseconds (default DURATION)
    */
   constructor(id, automate, duration = Carousel.#DURATION) {
@@ -59,9 +59,10 @@ export default class Carousel {
   /**
    * Initialize the carousel by setting up DOM elements and event listeners.
    * Must be called after construction and after DOM is ready.
+   * @param {boolean} [start=true] Start carousel if automated
    * @returns {Carousel} This carousel instance for method chaining
    */
-  init() {
+  init(start = true) {
     const carousel = $(this.#id);
     this.#slides = $$('.CarouselSlide', carousel);
     this.#total = this.#slides.length;
@@ -79,9 +80,10 @@ export default class Carousel {
     carousel.addEventListener('mouseenter', () => this.pause());
     carousel.addEventListener('mouseleave', () => this.unpause());
 
+    this.#curr = Math.floor(this.#total / 2); // start in the middle
     this.#update();
 
-    if (this.#automate) this.startCarousel();
+    if (this.#automate && start) this.startCarousel();
 
     return this;
   }

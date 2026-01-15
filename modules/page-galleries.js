@@ -1,7 +1,7 @@
 import { $, $$ } from './utils.js'
-import Carousel from './Carousel.js'
-import Website from './Website.js'
-import PhotoCatalog from './PhotoCatalog.js'
+import { Carousel } from './Carousel.js'
+import { Website } from './Website.js'
+import { PhotoCatalog } from './PhotoCatalog.js'
 
 /**
  * Initialize the galleries page functionality.
@@ -24,24 +24,28 @@ function initGalleries() {
 function initGallery(gallery, photos) {
   const gid = gallery.id;
   const cid = `#${gid} .Carousel`;
-  const carousel = $(cid, gallery);
-  const container = $('.CarouselContainer', carousel);
-  const indicators = $('.CarouselIndicators', carousel);
+  const carouselDiv = $(cid, gallery);
+  const containerDiv = $('.CarouselContainer', carouselDiv);
+  const indicatorsDiv = $('.CarouselIndicators', carouselDiv);
 
   let ndx = 0;
   photos.forEach(photo => createSlide(photo, ndx++));
 
-  Website.the.galleries[gid] = {
-    'gallery': gallery,
-    'carousel': new Carousel(cid, true).init()
-  };
+  const carousel = new Carousel(cid, true).init(false);
+  Website.the.galleries[gid] = { gallery, carousel };
+
+  if ('IntersectionObserver' in window) {
+    const pause = e => e.isIntersecting ? carousel.unpause() : carousel.pause();
+    const observing = all => all.forEach(e => pause(e));
+    new IntersectionObserver(observing, { threshold: 0.25 }).observe(carouselDiv);
+  }
 
   function createSlide(photo, ndx) {
     const slide = document.createElement('div');
     slide.className = 'CarouselSlide';
     slide.appendChild(createImage(photo));
-    container.appendChild(slide);
-    indicators.appendChild(createDot(ndx));
+    containerDiv.appendChild(slide);
+    indicatorsDiv.appendChild(createDot(ndx));
   }
 
   function createImage(photo) {

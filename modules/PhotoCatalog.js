@@ -6,7 +6,7 @@ import { immutable, shuffle } from './utils.js'
  * Manages a collection of photo galleries with immutable data structures.
  * Provides access to predefined galleries like aerial and ground photos.
  */
-export default class PhotoCatalog {
+export class PhotoCatalog {
   static #GALLERIES = immutable({
     "gallery-aerial": immutable(shuffle([
       "../galleries/aerial/aerial-01.webp",

@@ -22,15 +22,15 @@ export const $$ = (selector, node = document) => node.querySelectorAll(selector)
 export const immutable = o => Object.freeze(o);
 
 /**
- * Randomly shuffles an array and returns a subset of the specified maximum length.
+ * Randomly shuffles an array IN-PLACE and returns a subset of the specified maximum length.
  * @param {Array} a - The array to shuffle and slice
- * @param {number} [max] - Maximum number of elements to return. If not provided, returns all elements.
+ * @param {number} [max=a.length] - Maximum number of elements to return. If not provided, returns all elements.
  * @returns {Array} A randomly shuffled subset of the input array
  */
-export const shuffle = (a, max) => {
-  for (let i = a.length - 1; i > 0; i -= 1) {
+export const shuffle = (a, max = a.length) => {
+  for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
   }
-  return a.slice(0, max ?? a.length);
+  return a.slice(0, max);
 };

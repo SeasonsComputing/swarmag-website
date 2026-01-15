@@ -8,7 +8,7 @@ import { Swarm } from './Swarm.js'
  * gallery management, and visual effects. Uses the singleton pattern
  * to ensure only one instance exists throughout the application lifecycle.
  */
-export default class Website {
+export class Website {
   /** @static @private {Website} Singleton instance */
   static #the = null;
 
@@ -43,6 +43,7 @@ export default class Website {
 
       // show delayed elements (otherwise page is blank)
       $$('.Photo').forEach(e => e.classList.add('loaded'));
+      document.body.style.opacity = "1"
     }
   }
 
@@ -78,7 +79,7 @@ export default class Website {
     if (Website.#the) console.error("bootstrap() already completed!");
     
     Website.#the = new Website();
-    window.addEventListener('DOMContentLoaded', () => Website.the.#init(modules));
-    window.addEventListener('DOMContentLoaded', () => document.body.style.opacity = "1");
+    self.addEventListener('DOMContentLoaded', () => Website.the.#init(modules));
+    self.addEventListener('DOMContentLoaded', () => document.body.style.opacity = "1");
   }
 }
