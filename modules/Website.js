@@ -40,11 +40,8 @@ export class Website {
       this.#swarm.create(30, 10, 10, 3);
     } catch (e) {
       console.error(e);
-
-      // show delayed elements (otherwise page is blank)
-      $$('.Photo').forEach(e => e.classList.add('loaded'));
-      document.body.style.opacity = "1"
     }
+    document.body.style.opacity = "1"
   }
 
   /**
@@ -77,9 +74,8 @@ export class Website {
    */
   static bootstrap(modules = []) {
     if (Website.#the) console.error("bootstrap() already completed!");
-    
+
     Website.#the = new Website();
     self.addEventListener('DOMContentLoaded', () => Website.the.#init(modules));
-    self.addEventListener('DOMContentLoaded', () => document.body.style.opacity = "1");
   }
 }
