@@ -1,3 +1,8 @@
+/**
+ * Carousel component for cycling through items and handling controls.
+ * @module Carousel
+ */
+
 import { $, $$ } from './utils.js'
 
 /**

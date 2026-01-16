@@ -1,3 +1,8 @@
+/**
+ * Swarm animation module for rendering background particles.
+ * @module Swarm
+ */
+
 import { $ } from './utils.js'
 
 /**

@@ -1,4 +1,8 @@
 /**
+ * Utility module providing common DOM manipulation helpers.
+ * @module utils
+ */
+/**
  * Select a single DOM element using a CSS selector.
  * @param {string} selector - CSS selector string
  * @param {Element} [node=document] - Root element to search within

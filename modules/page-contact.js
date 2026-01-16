@@ -1,3 +1,8 @@
+/**
+ * Contact page module wiring form submission and validation.
+ * @module page-contact
+ */
+
 import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/+esm'
 import { $, $$ } from './utils.js'
 

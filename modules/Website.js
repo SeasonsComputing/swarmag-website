@@ -1,3 +1,8 @@
+/**
+ * Website bootstrap module coordinating core initialization.
+ * @module Website
+ */
+
 import { $$ } from './utils.js'
 import { Swarm } from './Swarm.js'
 

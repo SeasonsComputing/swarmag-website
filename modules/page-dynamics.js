@@ -1,3 +1,8 @@
+/**
+ * Page dynamics module handling scroll, header effects, and animations.
+ * @module page-dynamics
+ */
+
 import { $, $$ } from './utils.js'
 
 /**
@@ -52,4 +57,3 @@ function initAnchorScrolling() {
     }
   }
 }
-

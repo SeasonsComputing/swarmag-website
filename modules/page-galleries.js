@@ -1,3 +1,8 @@
+/**
+ * Galleries page module that assembles carousels and photo data.
+ * @module page-galleries
+ */
+
 import { $, $$ } from './utils.js'
 import { Carousel } from './Carousel.js'
 import { Website } from './Website.js'

@@ -1,4 +1,8 @@
 /**
+ * Global error handling module for uncaught errors and rejections.
+ * @module page-errors
+ */
+/**
  * Initialize error handling for the page.
  * Sets up global error and unhandled rejection listeners.
  */

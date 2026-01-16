@@ -1,3 +1,8 @@
+/**
+ * Photo catalog module for organizing and shuffling gallery images.
+ * @module PhotoCatalog
+ */
+
 import { immutable, shuffle } from './utils.js'
 
 /**

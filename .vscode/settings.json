@@ -1,11 +1,3 @@
 {
-    "cSpell.words": [
-        "Boid",
-        "boids",
-        "multispectral",
-        "rangeland",
-        "skidsteer",
-        "swarmag",
-        "toolcat"
-    ]
+    "deno.enable": false
 }
