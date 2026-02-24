@@ -10,14 +10,14 @@ import { $, $$ } from './utils.js'
  * Initialize the contact page functionality.
  * Sets up the contact form with validation, EmailJS integration, and event listeners.
  */
-export const init = () => initContactForm();
+export const init = () => initContactForm()
 
 /**
- * Attributes for emailjs 
+ * Attributes for emailjs
  */
-const ejsKey = 'jjgCuUf-CTyPT9cHj';
-const ejsAcct = 'swarmag_website';
-const ejsForm = 'swarmag_website_contact';
+const ejsKey = 'jjgCuUf-CTyPT9cHj'
+const ejsAcct = 'swarmag_website'
+const ejsForm = 'swarmag_website_contact'
 
 /**
  * Initialize the contact form with EmailJS integration, validation, and event listeners.
@@ -25,34 +25,33 @@ const ejsForm = 'swarmag_website_contact';
  */
 function initContactForm() {
   // Initialize EmailJS
-  emailjs.init({ publicKey: ejsKey });
+  emailjs.init({ publicKey: ejsKey })
 
-  const form = $('#contact-form');
-  const required = $$('input[required], select[required], textarea[required]', form);
+  const form = $('#contact-form')
+  const required = $$('input[required], select[required], textarea[required]', form)
 
   // Submit request
-  form.addEventListener('submit', e => onSubmit(e));
   const onSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (validateForm()) {
-      const submit = $('button[type="submit"]', form);
-      const origText = submit.textContent;
+      const submit = $('button[type="submit"]', form)
+      const origText = submit.textContent
 
       function showMessage(good = true, message = '') {
-        submit.textContent = good ? message : message.toUpperCase();
+        submit.textContent = good ? message : message.toUpperCase()
       }
 
       function clearMessage() {
-        submit.textContent = origText;
-        submit.disabled = false;
+        submit.textContent = origText
+        submit.disabled = false
       }
 
-      showMessage(true, 'Sending...');
-      submit.disabled = true;
+      showMessage(true, 'Sending...')
+      submit.disabled = true
 
       // Prepare email data
-      const fields = new FormData(form);
+      const fields = new FormData(form)
       const values = {
         'name': fields.get('full-name'),
         'email': fields.get('email'),
@@ -60,122 +59,125 @@ function initContactForm() {
         'service': fields.get('service-type') || 'Not specified',
         'property': fields.get('property-size') || 'Not specified',
         'message': fields.get('message') || 'No message provided'
-      };
+      }
 
-      const succeed = (response) => {
-        console.log('Email sent successfully:', response);
-        showMessage(true, 'Message Sent!');
+      const succeed = response => {
+        console.log('Email sent successfully:', response)
+        showMessage(true, 'Message Sent!')
 
         setTimeout(
           () => {
-            clearMessage();
-            form.reset();
-            clearFormErrors();
-          }, 2000
-        );
+            clearMessage()
+            form.reset()
+            clearFormErrors()
+          },
+          2000
+        )
       }
 
-      const failed = (error) => {
-        console.error('Email sending failed:', error);
-        showMessage(false, 'Send Failed - Try Again');
-        submit.disabled = false;
-        setTimeout(() => clearMessage(), 3000);
+      const failed = error => {
+        console.error('Email sending failed:', error)
+        showMessage(false, 'Send Failed - Try Again')
+        submit.disabled = false
+        setTimeout(() => clearMessage(), 3000)
       }
 
       // Send email
-      emailjs.send(ejsAcct, ejsForm, values).then(succeed).catch(failed);
+      emailjs.send(ejsAcct, ejsForm, values).then(succeed).catch(failed)
     }
   }
+  form.addEventListener('submit', e => onSubmit(e))
 
   // Add asterisks to required field labels
   required.forEach(field => {
-    const label = $(`label[for="${field.id}"]`, form);
+    const label = $(`label[for="${field.id}"]`, form)
     if (label && !label.textContent.includes('*')) {
-      label.innerHTML += ' <span class="text-red">*</span>';
+      label.innerHTML += ' <span class="text-red">*</span>'
     }
-  });
+  })
 
   // Real-time validation - attach to all form fields
-  const inputs = $$('input, select, textarea', form);
+  const inputs = $$('input, select, textarea', form)
   inputs.forEach(input => {
-    input.addEventListener('blur', () => validateField(input));
+    input.addEventListener('blur', () => validateField(input))
 
     input.addEventListener('input', () => {
       if (input.classList.contains('border-red')) {
-        validateField(input);
+        validateField(input)
       }
-    });
-  });
+    })
+  })
 
   function validateForm() {
     for (let i = 0; i < required.length; i++) {
-      if (!validateField(required[i])) return false;
+      if (!validateField(required[i])) return false
     }
-    return true;
+    return true
   }
 
   function validateField(field) {
-    const value = field.value.trim();
-    const fieldName = field.name;
-    let errorElement = document.getElementById(`${field.id}-error`);
+    const value = field.value.trim()
+    const fieldName = field.name
+    let errorElement = document.getElementById(`${field.id}-error`)
 
     // Create error element dynamically if it doesn't exist
     if (!errorElement) {
-      errorElement = document.createElement('div');
-      errorElement.id = `${field.id}-error`;
-      errorElement.className = 'text-red text-sm mt-1 hidden';
-      errorElement.setAttribute('role', 'alert');
-      field.parentNode.insertBefore(errorElement, field.nextSibling);
+      errorElement = document.createElement('div')
+      errorElement.id = `${field.id}-error`
+      errorElement.className = 'text-red text-sm mt-1 hidden'
+      errorElement.setAttribute('role', 'alert')
+      field.parentNode.insertBefore(errorElement, field.nextSibling)
     }
 
     // Clear previous error
-    errorElement.textContent = '';
-    errorElement.classList.add('hidden');
-    field.classList.remove('border-red');
-    field.classList.add('border-gray');
+    errorElement.textContent = ''
+    errorElement.classList.add('hidden')
+    field.classList.remove('border-red')
+    field.classList.add('border-gray')
 
     // Required field validation
     if (field.hasAttribute('required') && !value) {
-      showError(field, errorElement, `${fieldName} is required`);
-      return false;
+      showError(field, errorElement, `${fieldName} is required`)
+      return false
     }
 
     // Email validation
     if (field.type === 'email' && value) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       if (!emailRegex.test(value)) {
-        showError(field, errorElement, 'Please enter a valid email address');
-        return false;
+        showError(field, errorElement, 'Please enter a valid email address')
+        return false
       }
     }
 
     // Minimum length validation
     if (field.hasAttribute('minlength') && value.length < field.getAttribute('minlength')) {
-      showError(field, errorElement, `${fieldName} must be at least ${field.getAttribute('minlength')} characters`);
-      return false;
+      showError(field, errorElement,
+        `${fieldName} must be at least ${field.getAttribute('minlength')} characters`)
+      return false
     }
 
-    return true;
+    return true
   }
 
   function showError(field, element, message) {
-    element.textContent = message;
-    element.classList.remove('hidden');
-    field.classList.remove('border-gray');
-    field.classList.add('border-red');
+    element.textContent = message
+    element.classList.remove('hidden')
+    field.classList.remove('border-gray')
+    field.classList.add('border-red')
   }
 
   function clearFormErrors() {
-    const errors = $$('[id$="-error"]', form);
+    const errors = $$('[id$="-error"]', form)
     errors.forEach(e => {
-      e.textContent = '';
-      e.classList.add('hidden');
-    });
+      e.textContent = ''
+      e.classList.add('hidden')
+    })
 
-    const inputs = $$('input, select, textarea', form);
+    const inputs = $$('input, select, textarea', form)
     inputs.forEach(i => {
-      i.classList.remove('border-red');
-      i.classList.add('border-gray');
-    });
+      i.classList.remove('border-red')
+      i.classList.add('border-gray')
+    })
   }
 }

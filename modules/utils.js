@@ -8,7 +8,7 @@
  * @param {Element} [node=document] - Root element to search within
  * @returns {Element|null} The first matching element or null if not found
  */
-export const $ = (selector, node = document) => node.querySelector(selector);
+export const $ = (selector, node = document) => node.querySelector(selector)
 
 /**
  * Select multiple DOM elements using a CSS selector.
@@ -16,14 +16,14 @@ export const $ = (selector, node = document) => node.querySelector(selector);
  * @param {Element} [node=document] - Root element to search within
  * @returns {NodeList} A NodeList of matching elements
  */
-export const $$ = (selector, node = document) => node.querySelectorAll(selector);
+export const $$ = (selector, node = document) => node.querySelectorAll(selector)
 
 /**
  * Create an immutable (frozen) copy of an object.
  * @param {Object} o - The object to freeze
  * @returns {Object} The frozen object
  */
-export const immutable = o => Object.freeze(o);
+export const immutable = o => Object.freeze(o)
 
 /**
  * Randomly shuffles an array IN-PLACE and returns a subset of the specified maximum length.
@@ -33,8 +33,8 @@ export const immutable = o => Object.freeze(o);
  */
 export const shuffle = (a, max = a.length) => {
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
   }
-  return a.slice(0, max);
-};
+  return a.slice(0, max)
+}

@@ -15,20 +15,19 @@ import { $ } from './utils.js'
  */
 export class Swarm {
   /** @static {number} Rate at which boids can change direction (0.05 = 5% per frame) */
-  static TURN_SPEED = 0.05;
+  static TURN_SPEED = 0.05
 
   /** @static {number} Minimum distance boids should maintain from each other */
-  static MIN_DIST = 6;
+  static MIN_DIST = 6
 
   /** @static {number} Maximum distance at which boids influence each other */
-  static MAX_DIST = 30;
+  static MAX_DIST = 30
 
   /** @static {number} Distance at which mouse interaction affects boid behavior */
-  static MOUSE_DIST = 300;
+  static MOUSE_DIST = 300
 
   /** @static {string} Base CSS styles for the swarm container */
-  static STYLE =
-    `
+  static STYLE = `
     position: absolute;
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;
@@ -41,83 +40,95 @@ export class Swarm {
     margin: 0;
     padding: 0;
     color: #fff;
-    `;
+    `
 
   /** @static {string} CSS styles for hiding the swarm with fade transition */
-  static HIDE = Swarm.STYLE +
-    `
+  static HIDE = Swarm.STYLE
+    + `
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
-    `;
+    `
 
   /** @static {string} CSS styles for showing the swarm with fade transition */
-  static SHOW = Swarm.STYLE +
-    `
+  static SHOW = Swarm.STYLE
+    + `
     visibility: visible;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
-    `;
+    `
 
   /** @private {Bee[]} Array of bee boid instances */
-  #boids = [];
+  #boids = []
 
   /** @private {number} Target X coordinate for swarm behavior */
-  #targetX = 0;
+  #targetX = 0
 
   /** @private {number} Target Y coordinate for swarm behavior */
-  #targetY = 0;
+  #targetY = 0
 
   /** @private {HTMLElement|null} DOM container element for the swarm */
-  #container = null;
+  #container = null
 
   /** @private {HTMLElement|null} Home position element that triggers swarm behavior */
-  #home = null;
+  #home = null
 
   /** @private {HTMLButtonElement|null} Toggle UX button to animate swarm */
-  #toggle = null;
+  #toggle = null
 
   /** @private {number} RequestAnimationFrame ID for the animation loop */
-  #updateID = 0;
+  #updateID = 0
 
   /** @private {number} Timeout ID for scatter/home behavior cycling */
-  #scatterID = 0;
+  #scatterID = 0
 
   /**
    * Get the array of bee boids.
    * @returns {Bee[]} Array of Bee instances
    */
-  get boids() { return this.#boids; }
+  get boids() {
+    return this.#boids
+  }
 
   /**
    * Get the target X coordinate.
    * @returns {number} Target X position in pixels
    */
-  get targetX() { return this.#targetX; }
+  get targetX() {
+    return this.#targetX
+  }
 
   /**
    * Get the target Y coordinate.
    * @returns {number} Target Y position in pixels
    */
-  get targetY() { return this.#targetY; }
+  get targetY() {
+    return this.#targetY
+  }
 
   /**
    * Get the swarm container width.
    * @returns {number} Width in pixels
    */
-  get width() { return this.#container.offsetWidth; }
+  get width() {
+    return this.#container.offsetWidth
+  }
 
   /**
    * Get the swarm container height.
    * @returns {number} Height in pixels
    */
-  get height() { return this.#container.offsetHeight; }
+  get height() {
+    return this.#container.offsetHeight
+  }
 
   /**
    * Check if the swarm animation is currently running.
    * @returns {boolean} True if animation is visible and running
    */
-  get animating() { return this.#container.style.visibility === 'visible'; }
+  get animating() {
+    return this.#container.style.visibility === 'visible'
+  }
 
   /**
    * Initialize the swarm by setting up DOM elements and event listeners.
@@ -126,15 +137,15 @@ export class Swarm {
    * @returns {Swarm} This swarm instance for method chaining
    */
   init() {
-    this.#home = $('#swarm-home');
-    this.#toggle = $('#swarm-toggle');
-    this.#toggle.onclick = () => this.toggle();
+    this.#home = $('#swarm-home')
+    this.#toggle = $('#swarm-toggle')
+    this.#toggle.onclick = () => this.toggle()
 
-    this.#container = document.createElement('div');
-    this.#container.style = Swarm.HIDE;
-    $('#swarm-container').appendChild(this.#container);
+    this.#container = document.createElement('div')
+    this.#container.style = Swarm.HIDE
+    $('#swarm-container').appendChild(this.#container)
 
-    return this;
+    return this
   }
 
   /**
@@ -142,8 +153,8 @@ export class Swarm {
    * @param {Bee} b - The bee instance to add
    */
   addBee(b) {
-    this.#container.appendChild(b.div);
-    this.#boids.push(b);
+    this.#container.appendChild(b.div)
+    this.#boids.push(b)
   }
 
   /**
@@ -155,11 +166,11 @@ export class Swarm {
    */
   create(total, width, height, speed) {
     for (let i = total; i--;) {
-      const x = Math.random() * this.width;
-      const y = Math.random() * this.height;
-      const angle = Math.random() * 360;
-      const b = new Bee(width, height, speed, x, y, angle);
-      this.addBee(b);
+      const x = Math.random() * this.width
+      const y = Math.random() * this.height
+      const angle = Math.random() * 360
+      const b = new Bee(width, height, speed, x, y, angle)
+      this.addBee(b)
     }
   }
 
@@ -169,8 +180,8 @@ export class Swarm {
    * @param {number} y - Target Y coordinate in pixels
    */
   target(x, y) {
-    this.#targetX = x;
-    this.#targetY = y;
+    this.#targetX = x
+    this.#targetY = y
   }
 
   /**
@@ -181,14 +192,14 @@ export class Swarm {
     this.target(
       this.#home.offsetLeft + this.#home.offsetWidth / 2,
       this.#home.offsetTop + this.#home.offsetHeight / 2
-    );
+    )
 
     // scatter after return home
-    if (this.#scatterID) clearTimeout(this.#scatterID);
+    if (this.#scatterID) clearTimeout(this.#scatterID)
     this.#scatterID = setTimeout(
       () => this.scatter(),
       this.getDurationForScreenSize()
-    );
+    )
   }
 
   /**
@@ -196,14 +207,14 @@ export class Swarm {
    * Automatically schedules return home after a delay.
    */
   scatter() {
-    this.target(0, 0);
+    this.target(0, 0)
 
     // return home after scatter
-    if (this.#scatterID) clearTimeout(this.#scatterID);
+    if (this.#scatterID) clearTimeout(this.#scatterID)
     this.#scatterID = setTimeout(
       () => this.home(),
       this.getDurationForScreenSize()
-    );
+    )
   }
 
   /**
@@ -212,14 +223,14 @@ export class Swarm {
    */
   update() {
     try {
-      this.#updateID = requestAnimationFrame(() => this.update());
+      this.#updateID = requestAnimationFrame(() => this.update())
 
       for (let i = this.#boids.length; i--;) {
-        this.#boids[i].update(this);
+        this.#boids[i].update(this)
       }
     } catch (e) {
-      this.stop();
-      console.error(e);
+      this.stop()
+      console.error(e)
     }
   }
 
@@ -229,11 +240,11 @@ export class Swarm {
    */
   toggle() {
     if (this.animating) {
-      this.stop();
-      this.#toggle.classList.remove("active");
+      this.stop()
+      this.#toggle.classList.remove('active')
     } else {
-      this.start();
-      this.#toggle.classList.add("active");
+      this.start()
+      this.#toggle.classList.add('active')
     }
   }
 
@@ -243,14 +254,15 @@ export class Swarm {
    * Does nothing if animation is already running.
    */
   start() {
-    if (this.#updateID) return;
+    if (this.#updateID) return
 
-    window.onmousedown = (e) => this.target(e.pageX, e.pageY);
-    document.ontouchstart = (e) => this.target(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+    window.onmousedown = e => this.target(e.pageX, e.pageY)
+    document.ontouchstart = e =>
+      this.target(e.targetTouches[0].pageX, e.targetTouches[0].pageY)
 
-    this.update();
-    this.scatter();
-    this.#container.style = Swarm.SHOW;
+    this.update()
+    this.scatter()
+    this.#container.style = Swarm.SHOW
   }
 
   /**
@@ -258,34 +270,34 @@ export class Swarm {
    * Cancels animation frames, clears timers, and removes event listeners.
    */
   stop() {
-    if (this.#updateID) cancelAnimationFrame(this.#updateID);
-    if (this.#scatterID) clearTimeout(this.#scatterID);
+    if (this.#updateID) cancelAnimationFrame(this.#updateID)
+    if (this.#scatterID) clearTimeout(this.#scatterID)
 
-    this.#updateID = this.#scatterID = 0;
-    window.onmousedown = null;
-    document.ontouchstart = null;
-    this.#targetX = this.#targetY = 0;
+    this.#updateID = this.#scatterID = 0
+    window.onmousedown = null
+    document.ontouchstart = null
+    this.#targetX = this.#targetY = 0
 
-    this.#container.style = Swarm.HIDE;
+    this.#container.style = Swarm.HIDE
   }
 
   /** @static {number} Minimum scatter/home duration in seconds */
-  static MIN_SECONDS = 5;
+  static MIN_SECONDS = 5
 
   /** @static {number} Maximum scatter/home duration in seconds */
-  static MAX_SECONDS = 15;
+  static MAX_SECONDS = 15
 
   /** @static {number} Minimum screen width for duration calculation */
-  static LOW_END_WIDTH = 320;
+  static LOW_END_WIDTH = 320
 
   /** @static {number} Minimum screen height for duration calculation */
-  static LOW_END_HEIGHT = 695;
+  static LOW_END_HEIGHT = 695
 
   /** @static {number} Maximum screen width for duration calculation */
-  static HIGH_END_WIDTH = 2560;
+  static HIGH_END_WIDTH = 2560
 
   /** @static {number} Maximum screen height for duration calculation */
-  static HIGH_END_HEIGHT = 1245;
+  static HIGH_END_HEIGHT = 1245
 
   /**
    * Calculate scatter/home duration based on screen size.
@@ -293,23 +305,22 @@ export class Swarm {
    * @returns {number} Duration in milliseconds
    */
   getDurationForScreenSize() {
-    const minArea = Swarm.LOW_END_WIDTH * Swarm.LOW_END_HEIGHT;
-    const maxArea = Swarm.HIGH_END_WIDTH * Swarm.HIGH_END_HEIGHT;
-    const currentWidth = window.innerWidth;
-    const currentHeight = window.innerHeight;
-    const currentArea = currentWidth * currentHeight;
+    const minArea = Swarm.LOW_END_WIDTH * Swarm.LOW_END_HEIGHT
+    const maxArea = Swarm.HIGH_END_WIDTH * Swarm.HIGH_END_HEIGHT
+    const currentWidth = window.innerWidth
+    const currentHeight = window.innerHeight
+    const currentArea = currentWidth * currentHeight
 
     // Clamp the current area to the defined range to avoid unexpected results
-    const clampedArea = Math.max(minArea, Math.min(maxArea, currentArea));
+    const clampedArea = Math.max(minArea, Math.min(maxArea, currentArea))
 
     // Perform linear interpolation (mapping one range to another)
     // (value - oldMin) / (oldMax - oldMin) * (newMax - newMin) + newMin
-    const seconds =
-      ((clampedArea - minArea) / (maxArea - minArea)) *
-      (Swarm.MAX_SECONDS - Swarm.MIN_SECONDS) +
-      Swarm.MIN_SECONDS;
+    const seconds = ((clampedArea - minArea) / (maxArea - minArea))
+        * (Swarm.MAX_SECONDS - Swarm.MIN_SECONDS)
+      + Swarm.MIN_SECONDS
 
-    return Math.round(seconds * 1000);
+    return Math.round(seconds * 1000)
   }
 }
 
@@ -322,8 +333,7 @@ export class Swarm {
  */
 export class Bee {
   /** @static {string} Base CSS styles for individual bee elements */
-  static STYLE =
-    `
+  static STYLE = `
     position: absolute;
     will-change: transform;
     transform: translate3d(0, 0, 0);
@@ -331,46 +341,50 @@ export class Bee {
     -webkit-user-select: none;
     user-select: none;
     background: #fdf041ff;
-    `;
+    `
 
   /** @private {number} Current X position in pixels */
-  #x = 0;
+  #x = 0
 
   /** @private {number} Current Y position in pixels */
-  #y = 0;
+  #y = 0
 
   /** @private {number} Current movement angle in radians */
-  #angle = 0;
+  #angle = 0
 
   /** @private {number} Velocity X component */
-  #vx = 0;
+  #vx = 0
 
   /** @private {number} Velocity Y component */
-  #vy = 0;
+  #vy = 0
 
   /** @private {number} Size of the bee (maximum of width/height) */
-  #size = 0;
+  #size = 0
 
   /** @private {number} Movement speed multiplier */
-  #speed = 0;
+  #speed = 0
 
   /** @private {Bee|null} Reference to nearest neighboring bee */
-  #closest = null;
+  #closest = null
 
   /** @private {HTMLElement} DOM element representing the bee visually */
-  div = null;
+  div = null
 
   /**
    * Get the current X position.
    * @returns {number} X coordinate in pixels
    */
-  get x() { return this.#x; }
+  get x() {
+    return this.#x
+  }
 
   /**
    * Get the current Y position.
    * @returns {number} Y coordinate in pixels
    */
-  get y() { return this.#y; }
+  get y() {
+    return this.#y
+  }
 
   /**
    * Create a new bee boid with specified parameters.
@@ -382,15 +396,15 @@ export class Bee {
    * @param {number} [angle=0] - Initial movement angle in radians
    */
   constructor(width, height, speed, x = 0, y = 0, angle = 0) {
-    this.#speed = speed;
-    this.#angle = angle;
-    this.#x = x;
-    this.#y = y;
-    this.#size = Math.max(width, height);
+    this.#speed = speed
+    this.#angle = angle
+    this.#x = x
+    this.#y = y
+    this.#size = Math.max(width, height)
 
-    const ss = `width: ${width}px; height: ${height}px`;
-    this.div = document.createElement('div');
-    this.div.style = Bee.STYLE + ss;
+    const ss = `width: ${width}px; height: ${height}px`
+    this.div = document.createElement('div')
+    this.div.style = Bee.STYLE + ss
   }
 
   /**
@@ -400,67 +414,72 @@ export class Bee {
    * @param {Swarm} swarm - Reference to parent swarm for target and bounds data
    */
   update(swarm) {
-    this.#closest = this.getClosest(swarm.boids);
-    if (!this.#closest) return;
+    this.#closest = this.getClosest(swarm.boids)
+    if (!this.#closest) return
 
-    let hx, hy;
+    let hx, hy
 
     if (swarm.targetX && swarm.targetY) {
-      hx = swarm.targetX - this.#x;
-      hy = swarm.targetY - this.#y;
+      hx = swarm.targetX - this.#x
+      hy = swarm.targetY - this.#y
     } else {
-      hx = this.#closest.x - this.#x;
-      hy = this.#closest.y - this.#y;
+      hx = this.#closest.x - this.#x
+      hy = this.#closest.y - this.#y
     }
 
-    const distHeading = Math.sqrt(hx * hx + hy * hy);
-    let vxHeading, vyHeading;
+    const distHeading = Math.sqrt(hx * hx + hy * hy)
+    let vxHeading, vyHeading
 
     if (distHeading > Swarm.MOUSE_DIST) {
-      vxHeading = Math.random() - 0.5;
-      vyHeading = Math.random() - 0.5;
+      vxHeading = Math.random() - 0.5
+      vyHeading = Math.random() - 0.5
     } else {
-      vxHeading = hx / distHeading;
-      vyHeading = hy / distHeading;
+      vxHeading = hx / distHeading
+      vyHeading = hy / distHeading
     }
 
-    const dxClosest = this.#closest.x - this.#x;
-    const dyClosest = this.#closest.y - this.#y;
-    const normClosest = Math.sqrt(dxClosest * dxClosest + dyClosest * dyClosest);
-    const distClosest = Math.sqrt(dxClosest * dxClosest + dyClosest * dyClosest) - this.#closest.size;
-    const vxClosest = dxClosest / normClosest;
-    const vyClosest = dyClosest / normClosest;
-    let vxAverage, vyAverage;
+    const dxClosest = this.#closest.x - this.#x
+    const dyClosest = this.#closest.y - this.#y
+    const normClosest = Math.sqrt(dxClosest * dxClosest + dyClosest * dyClosest)
+    const distClosest = Math.sqrt(dxClosest * dxClosest + dyClosest * dyClosest)
+      - this.#closest.size
+    const vxClosest = dxClosest / normClosest
+    const vyClosest = dyClosest / normClosest
+    let vxAverage, vyAverage
 
     if (distClosest > Swarm.MAX_DIST) {
-      vxAverage = vxHeading + vxClosest;
-      vyAverage = vyHeading + vyClosest;
+      vxAverage = vxHeading + vxClosest
+      vyAverage = vyHeading + vyClosest
     } else if (distClosest < Swarm.MIN_DIST) {
-      vxAverage = -vxClosest;
-      vyAverage = -vyClosest;
+      vxAverage = -vxClosest
+      vyAverage = -vyClosest
     } else {
-      vxAverage = vxHeading;
-      vyAverage = vyHeading;
+      vxAverage = vxHeading
+      vyAverage = vyHeading
     }
 
-    let normAverage = Math.sqrt(vxAverage * vxAverage + vyAverage * vyAverage);
+    let normAverage = Math.sqrt(vxAverage * vxAverage + vyAverage * vyAverage)
 
-    vxAverage = vxAverage / normAverage;
-    vyAverage = vyAverage / normAverage;
+    vxAverage = vxAverage / normAverage
+    vyAverage = vyAverage / normAverage
 
-    const crossProduct = this.#vx * vyAverage - this.#vy * vxAverage;
-    const angleDifference = Math.abs((this.#vx * vxAverage + this.#vy * vyAverage > 0) ? Math.asin(crossProduct) : Math.PI - Math.asin(crossProduct));
+    const crossProduct = this.#vx * vyAverage - this.#vy * vxAverage
+    const angleDifference = Math.abs(
+      (this.#vx * vxAverage + this.#vy * vyAverage > 0)
+        ? Math.asin(crossProduct)
+        : Math.PI - Math.asin(crossProduct)
+    )
 
     if (crossProduct > 0) {
-      this.#angle += angleDifference * Swarm.TURN_SPEED; // Turn right
+      this.#angle += angleDifference * Swarm.TURN_SPEED // Turn right
     } else {
-      this.#angle -= angleDifference * Swarm.TURN_SPEED; // Turn left
+      this.#angle -= angleDifference * Swarm.TURN_SPEED // Turn left
     }
 
-    this.#vx = Math.cos(this.#angle);
-    this.#vy = Math.sin(this.#angle);
+    this.#vx = Math.cos(this.#angle)
+    this.#vy = Math.sin(this.#angle)
 
-    this.move(swarm);
+    this.move(swarm)
   }
 
   /**
@@ -471,25 +490,25 @@ export class Bee {
    * @private
    */
   move(swarm) {
-    const w = swarm.width;
-    const h = swarm.height;
+    const w = swarm.width
+    const h = swarm.height
 
-    this.#x += this.#vx * this.#speed;
-    this.#y += this.#vy * this.#speed;
+    this.#x += this.#vx * this.#speed
+    this.#y += this.#vy * this.#speed
 
     if (this.#x < -this.#size * 2) {
-      this.#x = w;
+      this.#x = w
     } else if (this.#x > w + this.#size) {
-      this.#x = -this.#size;
+      this.#x = -this.#size
     }
     if (this.#y < -this.#size * 3) {
-      this.#y = h;
+      this.#y = h
     } else if (this.#y > h + this.#size) {
-      this.#y = -this.#size;
+      this.#y = -this.#size
     }
 
-    const deg = (this.#angle * 180 / Math.PI) - 90;
-    this.div.style.transform = `translate3d(${this.#x}px,${this.#y}px,0) rotateZ(${deg}deg)`;
+    const deg = (this.#angle * 180 / Math.PI) - 90
+    this.div.style.transform = `translate3d(${this.#x}px,${this.#y}px,0) rotateZ(${deg}deg)`
   }
 
   /**
@@ -499,22 +518,22 @@ export class Bee {
    * @private
    */
   getClosest(boids) {
-    let dist = Infinity;
-    let find = null;
+    let dist = Infinity
+    let find = null
 
     for (let i = boids.length; i--;) {
-      const b = boids[i];
+      const b = boids[i]
       if (this !== b) {
-        const dx = b.#x - this.#x;
-        const dy = b.#y - this.#y;
-        const dl = dx * dx + dy * dy - b.#size * b.#size;
+        const dx = b.#x - this.#x
+        const dy = b.#y - this.#y
+        const dl = dx * dx + dy * dy - b.#size * b.#size
         if (dl < dist) {
-          dist = dl;
-          find = b;
+          dist = dl
+          find = b
         }
       }
     }
 
-    return find;
+    return find
   }
 }

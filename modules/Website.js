@@ -3,7 +3,6 @@
  * @module Website
  */
 
-import { $$ } from './utils.js'
 import { Swarm } from './Swarm.js'
 
 /**
@@ -15,19 +14,21 @@ import { Swarm } from './Swarm.js'
  */
 export class Website {
   /** @static @private {Website} Singleton instance */
-  static #the = null;
+  static #the = null
 
   /** @private {object} Storage for photo galleries indexed by gallery name */
-  #galleries = {};
+  #galleries = {}
 
   /** @private {Swarm} Swarm effect instance for visual animations */
-  #swarm = new Swarm();
+  #swarm = new Swarm()
 
   /**
    * Get the galleries collection.
    * @returns {object} Map of gallery names to gallery objects
    */
-  get galleries() { return this.#galleries; }
+  get galleries() {
+    return this.#galleries
+  }
 
   /**
    * Initialize the website application.
@@ -38,15 +39,15 @@ export class Website {
   #init(modules = []) {
     try {
       // Load & initialize modules
-      modules.forEach(name => this.#load(name));
+      modules.forEach(name => this.#load(name))
 
       // Initialize swarm of bees effect (easter-egg)
-      this.#swarm.init();
-      this.#swarm.create(30, 10, 10, 3);
+      this.#swarm.init()
+      this.#swarm.create(30, 10, 10, 3)
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-    document.body.style.opacity = "1"
+    document.body.style.opacity = '1'
   }
 
   /**
@@ -55,9 +56,9 @@ export class Website {
    * @param {string} name - Name of module to load and initialize
    */
   async #load(name) {
-    const module = await import(`../modules/${name}.js`);
-    if (!module.init) throw new Error(`module ${name} missing exported init()`);
-    module.init();
+    const module = await import(`../modules/${name}.js`)
+    if (!module.init) throw new Error(`module ${name} missing exported init()`)
+    module.init()
   }
 
   /**
@@ -67,8 +68,8 @@ export class Website {
    * @throws {Error} If bootstrap() has not been called first
    */
   static get the() {
-    if (!Website.#the) throw new Error('bootstrap() must be completed first!');
-    return Website.#the;
+    if (!Website.#the) throw new Error('bootstrap() must be completed first!')
+    return Website.#the
   }
 
   /**
@@ -78,9 +79,9 @@ export class Website {
    * @throws {Error} If bootstrap() has already been called
    */
   static bootstrap(modules = []) {
-    if (Website.#the) console.error("bootstrap() already completed!");
+    if (Website.#the) console.error('bootstrap() already completed!')
 
-    Website.#the = new Website();
-    self.addEventListener('DOMContentLoaded', () => Website.the.#init(modules));
+    Website.#the = new Website()
+    self.addEventListener('DOMContentLoaded', () => Website.the.#init(modules))
   }
 }

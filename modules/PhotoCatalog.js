@@ -13,28 +13,30 @@ import { immutable, shuffle } from './utils.js'
  */
 export class PhotoCatalog {
   static #GALLERIES = immutable({
-    "gallery-aerial": immutable(shuffle([
-      "../galleries/aerial/aerial-01.webp",
-      "../galleries/aerial/aerial-02.webp",
-      "../galleries/aerial/aerial-03.webp",
-      "../galleries/aerial/aerial-04.webp",
-      "../galleries/aerial/aerial-05.webp",
-      "../galleries/aerial/aerial-06.webp",
+    'gallery-aerial': immutable(shuffle([
+      '../galleries/aerial/aerial-01.webp',
+      '../galleries/aerial/aerial-02.webp',
+      '../galleries/aerial/aerial-03.webp',
+      '../galleries/aerial/aerial-04.webp',
+      '../galleries/aerial/aerial-05.webp',
+      '../galleries/aerial/aerial-06.webp'
     ])),
-    "gallery-ground": immutable(shuffle([
-      "../galleries/ground/ground-01.webp",
-      "../galleries/ground/ground-02.webp",
-      "../galleries/ground/ground-03.webp",
-      "../galleries/ground/ground-04.webp",
-      "../galleries/ground/ground-05.webp",
-      "../galleries/ground/ground-06.webp",
+    'gallery-ground': immutable(shuffle([
+      '../galleries/ground/ground-01.webp',
+      '../galleries/ground/ground-02.webp',
+      '../galleries/ground/ground-03.webp',
+      '../galleries/ground/ground-04.webp',
+      '../galleries/ground/ground-05.webp',
+      '../galleries/ground/ground-06.webp'
     ]))
-  });
+  })
 
   /**
    * Get the immutable galleries object.
    * @static
    * @returns {Object} Immutable object containing gallery arrays
    */
-  static get byGallery() { return PhotoCatalog.#GALLERIES; }
+  static get byGallery() {
+    return PhotoCatalog.#GALLERIES
+  }
 }
