@@ -25,7 +25,7 @@ function initHeader() {
   const hero = $('#hero')
   const header = $('#header')
 
-  window.addEventListener('scroll', onScroll)
+  globalThis.addEventListener('scroll', onScroll)
 
   function onScroll() {
     const sticky = isSticky()
@@ -36,7 +36,7 @@ function initHeader() {
 
   function isSticky() {
     const trigger = hero.offsetTop + Math.trunc(hero.offsetHeight / 4)
-    return window.scrollY > trigger
+    return globalThis.scrollY > trigger
   }
 }
 
@@ -50,8 +50,8 @@ function initAnchorScrolling() {
     e.preventDefault()
     const target = $(this.getAttribute('href'))
     if (target) {
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - 50
-      window.scrollTo({ top: targetTop, behavior: 'smooth' })
+      const targetTop = target.getBoundingClientRect().top + globalThis.scrollY - 50
+      globalThis.scrollTo({ top: targetTop, behavior: 'smooth' })
     }
   }
 }
