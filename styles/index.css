@@ -754,7 +754,7 @@ table.Table tbody tr.TableSection td {
 
 .HeroContainer .HeroLayout {
   display: grid;
-  gap: var(--sa-space-lg);
+  gap: var(--sa-space-sm);
   max-width: var(--sa-size-sm);
   padding-inline: var(--sa-space-lg);
   text-align: center;
@@ -767,15 +767,30 @@ table.Table tbody tr.TableSection td {
 }
 
 .HeroContainer .HeroLayout .Title {
-  background-color: oklch(var(--sa-color-whitebright) / 0.63);
   padding: var(--sa-space-md) var(--sa-space-2xl);
   margin-inline: auto;
-  border-radius: var(--sa-radius-xl);
+}
+
+.HeroContainer .HeroLayout .Title:before {
+    aspect-ratio: 1;
+  background: radial-gradient(
+    ellipse,
+    white,
+    transparent 70%
+  );
+  border-radius: var(--sa-radius-full);
+  content: '';
+  filter: blur(10px);
+  inline-size: 300px;
+  opacity: 0.68;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .HeroContainer .HeroLayout .Title>img {
-  max-height: calc(7rem + 4vw);
-  width: auto;
+  width: 400px;
+  height: auto;
 }
 
 .HeroContainer .HeroLayout>.Text {
