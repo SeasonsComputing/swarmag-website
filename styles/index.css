@@ -769,28 +769,34 @@ table.Table tbody tr.TableSection td {
 .HeroContainer .HeroLayout .Title {
   padding: var(--sa-space-md) var(--sa-space-2xl);
   margin-inline: auto;
+  position: relative;
 }
 
 .HeroContainer .HeroLayout .Title:before {
-    aspect-ratio: 1;
+  aspect-ratio: 1;
   background: radial-gradient(
     ellipse,
-    white,
-    transparent 70%
+    oklch(var(--sa-color-eggshell)),
+    transparent 85%
   );
   border-radius: var(--sa-radius-full);
   content: '';
   filter: blur(10px);
-  inline-size: 300px;
+  inline-size: 350px;
   opacity: 0.68;
+  pointer-events: none;
   position: absolute;
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 0;
 }
 
 .HeroContainer .HeroLayout .Title>img {
   width: 400px;
   height: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .HeroContainer .HeroLayout>.Text {
